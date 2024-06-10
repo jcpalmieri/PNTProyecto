@@ -20,3 +20,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+h1 {
+    color: green;
+}
+
+.publicaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    background-color: purple;
+    padding: 16px;
+}
+
+.publicacion-card {
+    background-color: lightgreen;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+    .publicacion-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
