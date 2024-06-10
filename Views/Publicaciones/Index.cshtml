@@ -16,7 +16,7 @@
     {
         <div class="publicacion-card">
             <h2>@item.nombreMascota</h2>
-            <img src="~/@item.Imagen" alt="@item.nombreMascota" class="publicacion-image" />
+            <img src="@Url.Content("~/"+item.Imagen)" alt="@item.nombreMascota" class="publicacion-image" />
             <p>@item.descripcion</p>
         </div>
     }
@@ -28,6 +28,9 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         h1 {
@@ -71,7 +74,8 @@
             gap: 16px;
             padding: 16px;
             background-color: #DDA0DD; /* Light purple background */
-            margin: 0 10%;
+            margin: 0 auto;
+            flex: 1;
         }
 
         .publicacion-card {
@@ -100,5 +104,15 @@
         .publicacion-card p {
             margin-top: 10px;
             color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
