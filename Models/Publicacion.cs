@@ -9,6 +9,7 @@ namespace PNTProyecto.Models
         public string nombreMascota { get; set; }
         public string descripcion { get; set; }
         public string Imagen { get; set; }
-        public String tipoMascota { get; set; }
+        // quite algo que no va.
     }
+        
 }
