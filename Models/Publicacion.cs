@@ -10,4 +10,5 @@ namespace PNTProyecto.Models
         public string descripcion { get; set; }
         public string Imagen { get; set; }
     }
+        
 }
