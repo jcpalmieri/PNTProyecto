@@ -4,33 +4,57 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Publicacion</h4>
+<h1></h1>
+<div class="Contenido">
+    <h4></h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.nombreMascota)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.nombreMascota)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.descripcion)
+        <dd class="col-sm-10">
+            <img src="@Url.Content("~/"+Model.Imagen)" alt="@Model.nombreMascota" class="img-thumbnail" style="max-width: 300px;" />
+        </dd>
+        <dt class="col-sm-2">
+            Descripción:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.descripcion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.nroPublicacion">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div style="margin-top: 20px;">
+            <form id="likeForm" asp-action="Like" method="post" style="display: inline-block; margin-right: 10px;">
+                <input type="hidden" asp-for="@Model.nroPublicacion" />
+                <button type="button" class="btn btn-primary" onclick="mostrarMensaje()">Me gusta</button>
+                <script>
+                function mostrarMensaje() {
+                    alert("¡Le diste Me gusta!");
+                }
+                </script>
+            </form>
+
+            <form id="dislikeForm" asp-action="Dislike" method="post" style="display: inline-block;">
+                <input type="hidden" asp-for="@Model.nroPublicacion" />
+                <button type="submit" class="btn btn-danger">No me gusta</button>
+                <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const form = document.getElementById("dislikeForm");
+                    form.addEventListener("submit", function (event) {
+                        event.preventDefault();
+                        window.location.href = '/Publicaciones';
+                    });
+                });
+                </script>
+            </form>
+        </div>
+
+
+
+        <style>
+            .Contenido {
+                background-color: #ffffff;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+        </style>

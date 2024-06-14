@@ -15,10 +15,19 @@
         @foreach (var item in Model)
     {
         <div class="publicacion-card">
-            <h2>@item.nombreMascota</h2>
-            <img src="@Url.Content("~/"+item.Imagen)" alt="@item.nombreMascota" class="publicacion-image" />
-            <p>@item.descripcion</p>
+            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
+                <h2>@item.nombreMascota</h2>
+                <img src="@Url.Content("~/"+item.Imagen)" alt="@item.nombreMascota" class="publicacion-image" />
+                <p>@item.descripcion</p>
+            </button>
+            <script>
+            // este sp lo que va a hacer es redirigirte al details.
+                   function redirectToDetails(nroPublicacion) {
+                    window.location.href = '/Publicaciones/Details/' + nroPublicacion;
+                }</script>
         </div>
+
+
     }
     </div>
 
@@ -73,13 +82,13 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 16px;
             padding: 16px;
-            background-color: #DDA0DD; /* Light purple background */
+            background-color: #DDA0DD;
             margin: 0 auto;
             flex: 1;
         }
 
         .publicacion-card {
-            background-color: #E6E6FA; /* Lavender background */
+            background-color: #E6E6FA;
             padding: 16px;
             border-radius: 8px;
             text-align: center;
