@@ -1,15 +1,34 @@
 @model IEnumerable<PNTProyecto.Models.Publicacion>
 
+
     @{
     ViewData["Title"] = "Publicaciones";
     }
 
     <h1>Paticas&Corazones</h1>
 
-    <div class="filter-bar">
-        <input type="text" placeholder="Filtro De Busqueda" class="filter-input" />
-        <button class="profile-button">Funciones de perfil</button>
+
+
+    <div class="filter-bar-container">
+        <div class="filter-bar">
+            <select id="Filtro de Búsqueda" onchange="seleccionarFiltro()">
+                <option value="">Filtro de Búsqueda</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="ave">Ave</option>
+                <option value="pez">Pez</option>
+            </select>
+        </div>
+        <div class="filter-bar">
+            <select id="Opciones de Usuario" onchange="handleUserOptionsChange()">
+                <option value="">Opciones de Usuario</option>
+                <option value="registrarse">Registrarse</option>
+                <option value="Crear Publicacion">Crear Publicacion</option>
+            </select>
+        </div>
     </div>
+    </div>
+
 
     <div class="publicaciones-grid">
         @foreach (var item in Model)
@@ -21,8 +40,8 @@
                 <p>@item.descripcion</p>
             </button>
             <script>
-            // este sp lo que va a hacer es redirigirte al details.
-                   function redirectToDetails(nroPublicacion) {
+                // este sp lo que va a hacer es redirigirte al details.
+                function redirectToDetails(nroPublicacion) {
                     window.location.href = '/Publicaciones/Details/' + nroPublicacion;
                 }</script>
         </div>
@@ -124,4 +143,36 @@
             bottom: 0;
             width: 100%;
         }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .filter-bar-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .filter-bar {
+            display: inline-block;
+        }
     </style>
+
+    <script>
+    function handleUserOptionsChange() {
+        var userOptions = document.getElementById('Opciones de Usuario');
+        if (userOptions.value === 'registrarse') {
+            window.location.href = 'Usuarios/Create';
+        } else if (userOptions.value === 'Crear Publicacion'){
+            window.location.href = 'Publicaciones/Create';
+        }
+    }
+</script>
+
+
