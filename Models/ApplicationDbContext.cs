@@ -11,5 +11,6 @@ namespace PNTProyecto.Models
         }
 
         public DbSet<Publicacion> Publicaciones { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pKip3ooHUWRiSI0cuZZTYEJb1tqN5DJ8THvMOej/12o=",
+  "Hash": "fbxUgQrXA8Eb15BUQ5O59GpUaM5mBt40vg/aU42KyZM=",
   "Source": "PNTProyecto",
   "BasePath": "_content/PNTProyecto",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PNTProyecto.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\.gitignore",
+      "SourceId": "PNTProyecto",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\",
+      "BasePath": "_content/PNTProyecto",
+      "RelativePath": ".gitignore",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\.gitignore"
     },
     {
       "Identity": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\css\\site.css",
@@ -186,6 +205,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Nemo.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\images\\ORT-ProgI-p2-modelo-DRAGONBALL.pdf",
+      "SourceId": "PNTProyecto",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\",
+      "BasePath": "_content/PNTProyecto",
+      "RelativePath": "images/ORT-ProgI-p2-modelo-DRAGONBALL.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\ORT-ProgI-p2-modelo-DRAGONBALL.pdf"
     },
     {
       "Identity": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\images\\Paquito.jpg",

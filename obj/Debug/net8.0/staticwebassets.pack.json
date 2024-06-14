@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\PNTProyecto.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\.gitignore",
+      "PackagePath": "staticwebassets\\.gitignore"
+    },
+    {
       "Id": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -31,6 +35,10 @@
     {
       "Id": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\images\\Nemo.jpg",
       "PackagePath": "staticwebassets\\images\\Nemo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\images\\ORT-ProgI-p2-modelo-DRAGONBALL.pdf",
+      "PackagePath": "staticwebassets\\images\\ORT-ProgI-p2-modelo-DRAGONBALL.pdf"
     },
     {
       "Id": "C:\\Users\\Agustin\\Source\\Repos\\PNTProyecto\\wwwroot\\images\\Paquito.jpg",
