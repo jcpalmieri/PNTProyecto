@@ -1,33 +1,23 @@
 @model PNTProyecto.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Usuario";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>Usuario</h4>
+    <h4>Detalles del Usuario</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NombreUsuario)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NombreUsuario)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Teléfono)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Teléfono)
-        </dd>
+        <dt class="col-sm-2">ID:</dt>
+        <dd class="col-sm-10">@Model.UsuarioId</dd>
+
+        <dt class="col-sm-2">Nombre de Usuario:</dt>
+        <dd class="col-sm-10">@Model.NombreUsuario</dd>
+
+        <dt class="col-sm-2">Email:</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Teléfono:</dt>
+        <dd class="col-sm-10">@Model.Teléfono</dd>
     </dl>
 </div>
-

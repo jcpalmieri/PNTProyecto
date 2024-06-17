@@ -2,7 +2,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <a>Registro:</a>
+    <button id="btnRegistrarse" class="btn btn-primary btn-lg">Registrarse</button>
 </div>
+<div>
+    <a>Login:</a>
+    <button id="btnLogin" class="btn btn-primary btn-lg">Login</button>
+</div>
+
+
+@section Scripts {
+    <script>
+        // Evento para el botón de Registrarse
+        document.getElementById('btnRegistrarse').addEventListener('click', function() {
+            window.location.href = 'Usuarios/Create'; 
+        });
+
+        // Evento para el botón de Login
+        document.getElementById('btnLogin').addEventListener('click', function() {
+            window.location.href = 'Usuarios/Login'; 
+        });
+    </script>
+}
+

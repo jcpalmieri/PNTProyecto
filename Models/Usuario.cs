@@ -11,3 +11,4 @@ namespace PNTProyecto.Models
         public string Teléfono { get; set; }
     }
 }
+

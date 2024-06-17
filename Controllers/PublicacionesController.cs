@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
 using System.Threading.Tasks;
 
+
 namespace PNTProyecto.Controllers
 {
-    public class PublicacionController : Controller
+    public class PublicacionesController : Controller 
     {
-        private readonly YourDbContextName _context;
+        private readonly ApplicationDbContext _context;
 
-        public PublicacionController(YourDbContextName context)
+        public PublicacionesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -131,6 +132,11 @@ namespace PNTProyecto.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var publicacion = await _context.Publicaciones.FindAsync(id);
+            if (publicacion == null)
+            {
+                return NotFound();
+            }
+
             _context.Publicaciones.Remove(publicacion);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -142,3 +148,4 @@ namespace PNTProyecto.Controllers
         }
     }
 }
+    
