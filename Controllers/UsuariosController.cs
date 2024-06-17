@@ -18,8 +18,26 @@ namespace PNTProyecto.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var usuarios = await _context.Usuarios.ToListAsync();
-            return View(usuarios);
+            return View(await _context.Usuarios.ToListAsync());
+        }
+
+        // GET: Usuarios/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.UsuarioId == id);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
         }
 
         // GET: Usuarios/Create
@@ -35,13 +53,6 @@ namespace PNTProyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Verificar email único
-                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
-                {
-                    ModelState.AddModelError("Email", "El email ya está registrado.");
-                    return View(usuario);
-                }
-
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -108,6 +119,7 @@ namespace PNTProyecto.Controllers
 
             var usuario = await _context.Usuarios
                 .FirstOrDefaultAsync(m => m.UsuarioId == id);
+
             if (usuario == null)
             {
                 return NotFound();
@@ -122,11 +134,6 @@ namespace PNTProyecto.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
             _context.Usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
