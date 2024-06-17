@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PNTProyecto.Controllers
 {
@@ -14,21 +16,21 @@ namespace PNTProyecto.Controllers
         }
 
         // GET: Publicacion
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var publicaciones = _context.Publicaciones.ToList();
-            return View(publicaciones);
+            return View(await _context.Publicaciones.ToListAsync());
         }
 
         // GET: Publicacion/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var publicacion = _context.Publicaciones.FirstOrDefault(m => m.nroPublicacion == id);
+            var publicacion = await _context.Publicaciones
+                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -46,26 +48,26 @@ namespace PNTProyecto.Controllers
         // POST: Publicacion/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Create([Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(publicacion);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(publicacion);
         }
 
         // GET: Publicacion/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var publicacion = _context.Publicaciones.Find(id);
+            var publicacion = await _context.Publicaciones.FindAsync(id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -76,7 +78,7 @@ namespace PNTProyecto.Controllers
         // POST: Publicacion/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
         {
             if (id != publicacion.nroPublicacion)
             {
@@ -85,22 +87,37 @@ namespace PNTProyecto.Controllers
 
             if (ModelState.IsValid)
             {
-                _context.Update(publicacion);
-                _context.SaveChanges();
+                try
+                {
+                    _context.Update(publicacion);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PublicacionExists(publicacion.nroPublicacion))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(publicacion);
         }
 
         // GET: Publicacion/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var publicacion = _context.Publicaciones.FirstOrDefault(m => m.nroPublicacion == id);
+            var publicacion = await _context.Publicaciones
+                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -112,12 +129,17 @@ namespace PNTProyecto.Controllers
         // POST: Publicacion/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var publicacion = _context.Publicaciones.Find(id);
+            var publicacion = await _context.Publicaciones.FindAsync(id);
             _context.Publicaciones.Remove(publicacion);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool PublicacionExists(int id)
+        {
+            return _context.Publicaciones.Any(e => e.nroPublicacion == id);
         }
     }
 }

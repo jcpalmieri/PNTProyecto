@@ -10,6 +10,11 @@ namespace PNTProyecto.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "Imagen",
+                table: "Publicaciones",
+                newName: "imagen");
+
             migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
@@ -27,12 +32,16 @@ namespace PNTProyecto.Migrations
                 });
         }
 
-        
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Usuarios");
+
+            migrationBuilder.RenameColumn(
+                name: "imagen",
+                table: "Publicaciones",
+                newName: "Imagen");
         }
     }
 }
-

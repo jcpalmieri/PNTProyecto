@@ -7844,11 +7844,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\PNTProyecto\\PNTProyecto.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\PNTProyecto.csproj",
       "projectName": "PNTProyecto",
-      "projectPath": "C:\\Users\\User\\Source\\Repos\\PNTProyecto\\PNTProyecto.csproj",
+      "projectPath": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\PNTProyecto.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\PNTProyecto\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7921,7 +7921,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

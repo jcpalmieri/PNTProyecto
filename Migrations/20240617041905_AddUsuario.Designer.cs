@@ -11,7 +11,7 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240614155357_AddUsuario")]
+    [Migration("20240617041905_AddUsuario")]
     partial class AddUsuario
     {
         /// <inheritdoc />
@@ -32,11 +32,11 @@ namespace PNTProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("nroPublicacion"));
 
-                    b.Property<string>("Imagen")
+                    b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("descripcion")
+                    b.Property<string>("imagen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -57,10 +57,6 @@ namespace PNTProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"));
 
-                    b.Property<string>("Apellido")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Contraseña")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -70,7 +66,7 @@ namespace PNTProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
+                    b.Property<string>("NombreUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
