@@ -22,21 +22,9 @@ namespace PNTProyecto.Controllers
         }
 
         // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.UsuarioId == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
+            return View();
         }
 
         // GET: Usuarios/Create
@@ -46,7 +34,7 @@ namespace PNTProyecto.Controllers
             {
                 _context.Add(usuario);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Index)); // Redirigir a la acción Index después de crear el usuario
+                return RedirectToAction(nameof(Index)); 
             }
             return View(usuario);
         }
@@ -55,31 +43,20 @@ namespace PNTProyecto.Controllers
     // POST: Usuarios/Create
     [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsuarioId,Nombre,Apellido,Email,Contraseña,Teléfono")] Usuario usuario)
+    public IActionResult Create(Usuario usuario)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
-            {
-                // Verificar email y teléfono únicos
-                if (_context.Usuarios.Any(u => u.Email == usuario.Email))
-                {
-                    ModelState.AddModelError("Email", "El email ya está registrado.");
-                    return View(usuario);
-                }
-                if (_context.Usuarios.Any(u => u.Teléfono == usuario.Teléfono))
-                {
-                    ModelState.AddModelError("Teléfono", "El teléfono ya está registrado.");
-                    return View(usuario);
-                }
-
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuario);
+            _context.Add(usuario);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index)); 
         }
+        return View(usuario);
+    }
+}
 
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+// GET: Usuarios/Edit/5
+public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
