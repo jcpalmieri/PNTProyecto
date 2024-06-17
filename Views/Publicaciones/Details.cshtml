@@ -1,60 +1,31 @@
 @model PNTProyecto.Models.Publicacion
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles de la Publicación";
 }
 
-<h1></h1>
-<div class="Contenido">
-    <h4></h4>
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>Detalles de la Publicación</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">Número de Publicación:</dt>
+        <dd class="col-sm-10">@Model.nroPublicacion</dd>
+
+        <dt class="col-sm-2">Nombre de la Mascota:</dt>
+        <dd class="col-sm-10">@Model.nombreMascota</dd>
+
+        <dt class="col-sm-2">Descripción:</dt>
+        <dd class="col-sm-10">@Model.descripcion</dd>
+
+        <dt class="col-sm-2">Imagen:</dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.nombreMascota)
+            <img src="@Model.imagen" alt="Imagen de la mascota" class="img-fluid" />
         </dd>
-        <dd class="col-sm-10">
-            <img src="@Url.Content("~/"+Model.Imagen)" alt="@Model.nombreMascota" class="img-thumbnail" style="max-width: 300px;" />
-        </dd>
-        <dt class="col-sm-2">
-            Descripción:
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
-        <div style="margin-top: 20px;">
-            <form id="likeForm" asp-action="Like" method="post" style="display: inline-block; margin-right: 10px;">
-                <input type="hidden" asp-for="@Model.nroPublicacion" />
-                <button type="button" class="btn btn-primary" onclick="mostrarMensaje()">Me gusta</button>
-                <script>
-                function mostrarMensaje() {
-                    alert("¡Le diste Me gusta!");
-                }
-                </script>
-            </form>
+    </dl>
+</div>
 
-            <form id="dislikeForm" asp-action="Dislike" method="post" style="display: inline-block;">
-                <input type="hidden" asp-for="@Model.nroPublicacion" />
-                <button type="submit" class="btn btn-danger">No me gusta</button>
-                <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    const form = document.getElementById("dislikeForm");
-                    form.addEventListener("submit", function (event) {
-                        event.preventDefault();
-                        window.location.href = '/Publicaciones';
-                    });
-                });
-                </script>
-            </form>
-        </div>
-
-
-
-        <style>
-            .Contenido {
-                background-color: #ffffff;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                margin-bottom: 20px;
-            }
-        </style>
+<div>
+    <a asp-action="Index">Volver a la Lista</a>
+</div>

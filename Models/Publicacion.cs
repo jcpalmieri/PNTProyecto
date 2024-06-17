@@ -11,7 +11,6 @@ namespace PNTProyecto.Models
 
         public string descripcion { get; set; }
 
-        [Display(Name = "Imagen")]
-        public IFormFile ImagenFile { get; set; } // Propiedad para capturar el archivo de imagen
+        public string imagen { get; set; }
     }
 }
