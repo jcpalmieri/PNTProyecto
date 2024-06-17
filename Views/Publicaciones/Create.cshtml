@@ -1,33 +1,31 @@
 @model PNTProyecto.Models.Publicacion
 
-<h2>Create</h2>
+@{
+    ViewData["Title"] = "Crear Publicación";
+}
 
-<form asp-action="Create" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<h1>@ViewData["Title"]</h1>
 
+<form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="nombreMascota" class="control-label"></label>
+        <label asp-for="nombreMascota"></label>
         <input asp-for="nombreMascota" class="form-control" />
         <span asp-validation-for="nombreMascota" class="text-danger"></span>
     </div>
-
     <div class="form-group">
-        <label asp-for="descripcion" class="control-label"></label>
+        <label asp-for="descripcion"></label>
         <textarea asp-for="descripcion" class="form-control"></textarea>
         <span asp-validation-for="descripcion" class="text-danger"></span>
     </div>
-
     <div class="form-group">
-        <label asp-for="imagen" class="control-label"></label>
-        <input asp-for="imagen" type="file" class="form-control-file" accept="image/*" />
+        <label asp-for="imagen"></label>
+        <input asp-for="imagen" class="form-control" />
         <span asp-validation-for="imagen" class="text-danger"></span>
     </div>
-
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+
+<a asp-action="Index">Volver a la lista</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
