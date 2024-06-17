@@ -9,23 +9,21 @@
 <div>
     <h4>Detalles de la Publicación</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Número de Publicación:</dt>
-        <dd class="col-sm-10">@Model.nroPublicacion</dd>
-
-        <dt class="col-sm-2">Nombre de la Mascota:</dt>
-        <dd class="col-sm-10">@Model.nombreMascota</dd>
-
-        <dt class="col-sm-2">Descripción:</dt>
-        <dd class="col-sm-10">@Model.descripcion</dd>
-
-        <dt class="col-sm-2">Imagen:</dt>
-        <dd class="col-sm-10">
-            <img src="@Model.imagen" alt="Imagen de la mascota" class="img-fluid" />
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-sm-2">IdPublicacion: @Model.nroPublicacion</div>
+        <div class="col-sm-10">@Model.nombreMascota</div>
+        <div class="col-sm-2">Imagen:</div>
+        <div class="col-sm-10">
+            <img src="~/@Model.imagen" style="max-width: 25%;" /> 
+        </div>
+        <div class="col-sm-2">Descripción:</div>
+        <div class="col-sm-10">@Model.descripcion</div>
+    </div>
 </div>
 
 <div>
     <a asp-action="Index">Volver a la Lista</a>
 </div>
+
+
+
