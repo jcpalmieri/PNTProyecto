@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace PNTProyecto.Controllers
 {
-    public class PublicacionController : Controller
+    public class PublicacionesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PublicacionController(ApplicationDbContext context)
+        public PublicacionesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Publicacion
+        // GET: Publicaciones
         public async Task<IActionResult> Index()
         {
             return View(await _context.Publicaciones.ToListAsync());
         }
 
-        // GET: Publicacion/Details/5
+        // GET: Publicaciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,13 +39,13 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // GET: Publicacion/Create
+        // GET: Publicaciones/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Publicacion/Create
+        // POST: Publicaciones/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
@@ -59,7 +59,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // GET: Publicacion/Edit/5
+        // GET: Publicaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -75,7 +75,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // POST: Publicacion/Edit/5
+        // POST: Publicaciones/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
@@ -108,7 +108,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // GET: Publicacion/Delete/5
+        // GET: Publicaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,7 +126,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // POST: Publicacion/Delete/5
+        // POST: Publicaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -4,8 +4,9 @@
     ViewData["Title"] = "Publicaciones";
     }
 
-    <h1>Paticas&Corazones</h1>
-
+    <header class="banner">
+        <h1>Paticas&Corazones</h1>
+    </header>
 
     <div class="filter-bar-container">
         <div class="filter-bar">
@@ -26,10 +27,9 @@
         </div>
     </div>
 
-
     <div class="publicaciones-grid">
         @foreach (var item in Model)
-    {
+        {
         <div class="publicacion-card">
             <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.nombreMascota</h2>
@@ -37,17 +37,19 @@
                 <p>@item.descripcion</p>
             </button>
         </div>
-    }
+        }
     </div>
+
+    <footer class="footer">
+        
+    </footer>
 
     @section Scripts {
         <script>
-            
             function redirectToDetails(nroPublicacion) {
                 window.location.href = '/Publicaciones/Details/' + nroPublicacion;
             }
 
-            
             function handleUserOptionsChange() {
                 var userOptions = document.getElementById('Opciones de Usuario');
                 if (userOptions.value === 'registrarse') {
@@ -57,7 +59,5 @@
                 }
             }
         </script>
-
-        
     }
 
