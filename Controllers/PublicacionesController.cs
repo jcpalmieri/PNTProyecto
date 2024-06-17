@@ -1,23 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
 using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PNTProyecto.Controllers
 {
     public class PublicacionesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ILogger<PublicacionesController> _logger;
 
-        public PublicacionesController(ApplicationDbContext context, ILogger<PublicacionesController> logger)
+        public PublicacionesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment, ILogger<PublicacionesController> logger)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
             _logger = logger;
         }
 
@@ -58,10 +61,31 @@ namespace PNTProyecto.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("nroPublicacion,nombreMascota,descripcion,Imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Create([Bind("nroPublicacion,nombreMascota,descripcion,ImagenFile")] Publicacion publicacion)
         {
             if (ModelState.IsValid)
             {
+                if (publicacion.ImagenFile != null && publicacion.ImagenFile.Length > 0)
+                {
+                    // Ruta relativa dentro de wwwroot/imagenes
+                    var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "imagenes");
+
+                    // Nombre único para evitar conflictos
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(publicacion.ImagenFile.FileName);
+
+                    // Ruta completa donde se guardará el archivo
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    // Guardar el archivo en el servidor
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await publicacion.ImagenFile.CopyToAsync(stream);
+                    }
+
+                    // Guardar la ruta de la imagen en la entidad Publicacion
+                    publicacion.Imagen = "/imagenes/" + uniqueFileName;
+                }
+
                 _context.Add(publicacion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -159,3 +183,4 @@ namespace PNTProyecto.Controllers
         }
     }
 }
+

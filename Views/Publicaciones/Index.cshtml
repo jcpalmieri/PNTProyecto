@@ -1,13 +1,10 @@
 @model IEnumerable<PNTProyecto.Models.Publicacion>
 
-
     @{
     ViewData["Title"] = "Publicaciones";
     }
 
     <h1>Paticas&Corazones</h1>
-
-
 
     <div class="filter-bar-container">
         <div class="filter-bar">
@@ -27,8 +24,6 @@
             </select>
         </div>
     </div>
-    </div>
-
 
     <div class="publicaciones-grid">
         @foreach (var item in Model)
@@ -36,17 +31,10 @@
         <div class="publicacion-card">
             <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.nombreMascota</h2>
-                <img src="@Url.Content("~/"+item.Imagen)" alt="@item.nombreMascota" class="publicacion-image" />
+                <img src="@Url.Content(item.Imagen)" alt="@item.nombreMascota" class="publicacion-image" />
                 <p>@item.descripcion</p>
             </button>
-            <script>
-                // este sp lo que va a hacer es redirigirte al details.
-                function redirectToDetails(nroPublicacion) {
-                    window.location.href = '/Publicaciones/Details/' + nroPublicacion;
-                }</script>
         </div>
-
-
     }
     </div>
 
@@ -165,14 +153,18 @@
     </style>
 
     <script>
-    function handleUserOptionsChange() {
-        var userOptions = document.getElementById('Opciones de Usuario');
-        if (userOptions.value === 'registrarse') {
-            window.location.href = 'Usuarios/Create';
-        } else if (userOptions.value === 'Crear Publicacion'){
-            window.location.href = 'Publicaciones/Create';
+        // Función JavaScript para redirigir a los detalles
+        function redirectToDetails(nroPublicacion) {
+            window.location.href = '/Publicaciones/Details/' + nroPublicacion;
         }
-    }
-</script>
 
-
+        // Función JavaScript para manejar cambios en las opciones de usuario
+        function handleUserOptionsChange() {
+            var userOptions = document.getElementById('Opciones de Usuario');
+            if (userOptions.value === 'registrarse') {
+                window.location.href = 'Usuarios/Create';
+            } else if (userOptions.value === 'Crear Publicacion') {
+                window.location.href = 'Publicaciones/Create';
+            }
+        }
+    </script>

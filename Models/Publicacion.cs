@@ -6,9 +6,12 @@ namespace PNTProyecto.Models
     {
         [Key]
         public int nroPublicacion { get; set; }
+
         public string nombreMascota { get; set; }
+
         public string descripcion { get; set; }
-        public string Imagen { get; set; }
+
+        [Display(Name = "Imagen")]
+        public IFormFile ImagenFile { get; set; } // Propiedad para capturar el archivo de imagen
     }
-        
 }
