@@ -40,13 +40,20 @@ namespace PNTProyecto.Controllers
         }
 
         // GET: Usuarios/Create
-        public IActionResult Create()
+        public IActionResult Create(Usuario usuario)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                _context.Add(usuario);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index)); // Redirigir a la acción Index después de crear el usuario
+            }
+            return View(usuario);
         }
+    }
 
-        // POST: Usuarios/Create
-        [HttpPost]
+    // POST: Usuarios/Create
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UsuarioId,Nombre,Apellido,Email,Contraseña,Teléfono")] Usuario usuario)
         {
