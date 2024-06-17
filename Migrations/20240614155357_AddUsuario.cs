@@ -16,8 +16,7 @@ namespace PNTProyecto.Migrations
                 {
                     UsuarioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Contraseña = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Teléfono = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -28,7 +27,7 @@ namespace PNTProyecto.Migrations
                 });
         }
 
-        /// <inheritdoc />
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -36,3 +35,4 @@ namespace PNTProyecto.Migrations
         }
     }
 }
+

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create User</h1>
+<h1>Crear Usuario</h1>
 
 <h4>Usuario</h4>
 
@@ -38,5 +38,16 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" va
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
