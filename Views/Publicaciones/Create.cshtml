@@ -1,3 +1,11 @@
+@model PNTProyecto.Models.Publicacion
+
+@{
+    ViewData["Title"] = "Crear Publicación";
+}
+
+<h1>@ViewData["Title"]</h1>
+
 <form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="nombreMascota" class="control-label"></label>
@@ -10,9 +18,13 @@
         <span asp-validation-for="descripcion" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="foto" class="control-label"></label>
-        <input asp-for="foto" type="file" class="form-control" />
-        <span asp-validation-for="foto" class="text-danger"></span>
+        <label asp-for="imagen" class="control-label"></label>
+        <input asp-for="imagen" type="file" class="form-control-file" />
+        <span asp-validation-for="imagen" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Crear</button>
 </form>
+
+<div>
+    <a asp-action="Index">Volver a la Lista</a>
+</div>

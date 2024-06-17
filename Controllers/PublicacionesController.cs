@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
+using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,7 +20,8 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Publicaciones.ToListAsync());
+            var publicaciones = await _context.Publicaciones.ToListAsync();
+            return View(publicaciones);
         }
 
         // GET: Publicaciones/Details/5

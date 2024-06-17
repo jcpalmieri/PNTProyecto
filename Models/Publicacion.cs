@@ -11,7 +11,7 @@ namespace PNTProyecto.Models
 
         public string descripcion { get; set; }
 
-        [DataType(DataType.ImageUrl)]
         public string imagen { get; set; }
     }
+
 }
