@@ -59,5 +59,89 @@
                 }
             }
         </script>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #333; 
+                color: #fff; 
+            }
+
+            .banner {
+                background-color: #444; 
+                text-align: center;
+                padding: 20px;
+            }
+
+            .filter-bar-container {
+                display: flex;
+                justify-content: center; 
+                align-items: center; 
+                padding: 10px;
+            }
+
+            .filter-bar {
+                margin-right: 10px;
+            }
+
+                .filter-bar select {
+                    padding: 8px;
+                    font-size: 16px;
+                    background-color: #555; 
+                    color: #fff; 
+                    border: none;
+                    border-radius: 4px;
+                }
+
+            .publicaciones-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 16px;
+                padding: 16px;
+            }
+
+            .publicacion-card {
+                background-color: #666; 
+                padding: 16px;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                transition: transform 0.2s;
+            }
+
+                .publicacion-card:hover {
+                    transform: scale(1.05);
+                }
+
+                .publicacion-card h2 {
+                    color: #4CAF50;
+                }
+
+                .publicacion-card img {
+                    max-width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                }
+
+                .publicacion-card p {
+                    margin-top: 10px;
+                    color: #fff;
+                }
+
+            .footer {
+                background-color: #444; 
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            }
+
+        </style>
     }
+
+
 
