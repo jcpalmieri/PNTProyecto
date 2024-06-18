@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-
 
 namespace PNTProyecto.Controllers
 {
-    public class PublicacionesController : Controller 
+    public class PublicacionesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -18,7 +20,7 @@ namespace PNTProyecto.Controllers
         // GET: Publicacion
         public IActionResult Index()
         {
-            return View(publicaciones);
+            return View(_context.Publicaciones.ToList());
         }
 
         // GET: Publicacion/Details/5
@@ -30,7 +32,7 @@ namespace PNTProyecto.Controllers
             }
 
             var publicacion = await _context.Publicaciones
-                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
+                .FirstOrDefaultAsync(m => m.NroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -49,31 +51,30 @@ namespace PNTProyecto.Controllers
         // POST: Publicacion/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("NroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
+        public async Task<IActionResult> Create([Bind("NombreMascota,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
         {
             if (ModelState.IsValid)
             {
                 if (imagen != null && imagen.Length > 0)
                 {
-                    var filePath = Path.Combine("wwwroot/images", imagen.FileName);
-                    using (var stream = System.IO.File.Create(filePath))
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", imagen.FileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        imagen.CopyTo(stream);
+                        await imagen.CopyToAsync(stream);
                     }
                     publicacion.Imagen = "/images/" + imagen.FileName;
                 }
 
-                publicacion.NroPublicacion = publicaciones.Count + 1; // Simple auto-incremento
-                publicaciones.Add(publicacion);
+                _context.Add(publicacion);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
-    }
 
-    // GET: Publicacion/Edit/5
-    public async Task<IActionResult> Edit(int? id)
+        // GET: Publicacion/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -91,9 +92,9 @@ namespace PNTProyecto.Controllers
         // POST: Publicacion/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Edit(int id, [Bind("NroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion)
         {
-            if (id != publicacion.nroPublicacion)
+            if (id != publicacion.NroPublicacion)
             {
                 return NotFound();
             }
@@ -107,7 +108,7 @@ namespace PNTProyecto.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PublicacionExists(publicacion.nroPublicacion))
+                    if (!PublicacionExists(publicacion.NroPublicacion))
                     {
                         return NotFound();
                     }
@@ -130,7 +131,7 @@ namespace PNTProyecto.Controllers
             }
 
             var publicacion = await _context.Publicaciones
-                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
+                .FirstOrDefaultAsync(m => m.NroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -157,8 +158,7 @@ namespace PNTProyecto.Controllers
 
         private bool PublicacionExists(int id)
         {
-            return _context.Publicaciones.Any(e => e.nroPublicacion == id);
+            return _context.Publicaciones.Any(e => e.NroPublicacion == id);
         }
     }
 }
-    
