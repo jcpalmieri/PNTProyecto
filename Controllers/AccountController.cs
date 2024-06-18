@@ -54,23 +54,18 @@ namespace PNTProyecto.Controllers
         }
 
         [HttpGet]
-        public IActionResult Logout()
-        {
-            return RedirectToAction("LogoutPost");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> LogoutPost()
+        public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Account");
         }
 
+    
         public IActionResult AccessDenied()
         {
             return View();
         }
-
+     
         public bool IsLoggedIn()
         {
             return User.Identity.IsAuthenticated;

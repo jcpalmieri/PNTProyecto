@@ -3,13 +3,25 @@
 }
 
 <div>
-    <a>Registro:</a>
-    <button id="btnRegistrarse" class="btn btn-primary btn-lg">Registrarse</button>
-</div>
-<div>
-    <a>Login:</a>
-    <button id="btnLogin" class="btn btn-primary btn-lg">Login</button>
-</div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item">
+            <span class="navbar-text">Welcome, @User.Identity.Name!</span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Logout", "Account")">Logout</a>
+        </li>
+    } else {
+        <div>
+             <a>Registro:</a>
+            <button id="btnRegistrarse" class="btn btn-primary btn-lg">Registrarse</button>
+        </div>
+        <div>
+            <a>Login:</a>
+            <button id="btnLogin" class="btn btn-primary btn-lg">Login</button>
+        </div>
+    }
+    
 
 
 @section Scripts {

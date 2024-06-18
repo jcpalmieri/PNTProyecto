@@ -20,6 +20,7 @@ else
     <div class="filter-bar-container">
         <div class="filter-bar"> 
             <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
+          
                 <option value="">Todas las publicaciones</option> 
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
@@ -31,10 +32,17 @@ else
         <div class="filter-bar">
             <select id="OpcionesDeUsuario" onchange="handleUserOptionsChange()">
                 <option value="">Opciones de Usuario</option>
-                <option value="registrarse">Registrarse</option>
-                <option value="Login">Login</option>
+             
+            @if (User.Identity.IsAuthenticated)
+            {
                 <option value="Login">Ir a perfil</option>
                 <option value="Crear Publicacion">Crear Publicacion</option>
+            } else
+            {
+                <option value="registrarse">Registrarse</option>
+                <option value="Login">Login</option>
+            }
+           
             </select>
         </div>
     </div>
