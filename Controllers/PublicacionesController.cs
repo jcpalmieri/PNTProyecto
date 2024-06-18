@@ -16,9 +16,9 @@ namespace PNTProyecto.Controllers
         }
 
         // GET: Publicacion
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Publicaciones.ToListAsync());
+            return View(publicaciones);
         }
 
         // GET: Publicacion/Details/5
@@ -42,25 +42,38 @@ namespace PNTProyecto.Controllers
         // GET: Publicacion/Create
         public IActionResult Create()
         {
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View();
         }
 
         // POST: Publicacion/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("nroPublicacion,nombreMascota,descripcion,imagen")] Publicacion publicacion)
+        public IActionResult Create([Bind("NroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(publicacion);
-                await _context.SaveChangesAsync();
+                if (imagen != null && imagen.Length > 0)
+                {
+                    var filePath = Path.Combine("wwwroot/images", imagen.FileName);
+                    using (var stream = System.IO.File.Create(filePath))
+                    {
+                        imagen.CopyTo(stream);
+                    }
+                    publicacion.Imagen = "/images/" + imagen.FileName;
+                }
+
+                publicacion.NroPublicacion = publicaciones.Count + 1; // Simple auto-incremento
+                publicaciones.Add(publicacion);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
+    }
 
-        // GET: Publicacion/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+    // GET: Publicacion/Edit/5
+    public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

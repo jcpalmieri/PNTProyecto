@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace PNTProyecto.Models
@@ -5,13 +6,25 @@ namespace PNTProyecto.Models
     public class Publicacion
     {
         [Key]
-        public int nroPublicacion { get; set; }
-        
-        public string nombreMascota { get; set; }
-        
-        public string descripcion { get; set; }
+        public int NroPublicacion { get; set; }
 
-        public string imagen { get; set; }
+        [Required]
+        [Display(Name = "Nombre de la Mascota")]
+        public string NombreMascota { get; set; }
+
+        [Display(Name = "Imagen")]
+        public string Imagen { get; set; }
+
+        [Required]
+        [Display(Name = "Descripción")]
+        public string Descripcion { get; set; }
+
+        [Required]
+        [Display(Name = "Tipo de Mascota")]
+        public string TipoMascota { get; set; }
+
+        [Required]
+        [Display(Name = "Contacto")]
+        public string Contacto { get; set; }
     }
-
 }
