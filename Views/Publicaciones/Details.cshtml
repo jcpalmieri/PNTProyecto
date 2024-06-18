@@ -41,16 +41,27 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TipoMascota)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Contacto)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Contacto)
-        </dd>
     </dl>
 </div>
 
 <div>
+    <button type="button" onclick="mostrarContacto()" class="btn btn-primary">Me Gusta</button>
+    <script>
+    function mostrarContacto() {
+        var contacto = '@Model.Contacto'; // es el número de contacto.
+        alert('El número de telefono del usuario es: ' + contacto);
+    }
+    </script>
+    <button type="button" onclick="volverPublicaciones()" class="btn btn-primary">No me gusta</button>
+    <script>
+        function volverPublicaciones() {
+            window.location.href = '../'; // regresa a la pagina de publicaciones
+        }
+    </script>
+</div>
+
+<div>
+    
     <a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a> |
     <a asp-action="Index">Volver al listado</a>
 </div>

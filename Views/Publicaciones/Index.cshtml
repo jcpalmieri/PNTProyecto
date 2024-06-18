@@ -19,18 +19,20 @@ else
 
     <div class="filter-bar-container">
         <div class="filter-bar">
-            <select id="Filtro de Búsqueda" onchange="seleccionarFiltro()">
-                <option value="">Filtro de Búsqueda</option>
+            <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
+                <option value="">Todas las publicaciones</option>
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
                 <option value="ave">Ave</option>
                 <option value="pez">Pez</option>
+                <option value="roedor">Roedor</option>
             </select>
         </div>
         <div class="filter-bar">
-            <select id="Opciones de Usuario" onchange="handleUserOptionsChange()">
+            <select id="OpcionesDeUsuario" onchange="handleUserOptionsChange()">
                 <option value="">Opciones de Usuario</option>
                 <option value="registrarse">Registrarse</option>
+                <option value="Login">Login</option>
                 <option value="Crear Publicacion">Crear Publicacion</option>
             </select>
         </div>
@@ -39,10 +41,10 @@ else
     <div class="publicaciones-grid">
         @foreach (var item in Model)
     {
-        <div class="publicacion-card">
+        <div class="publicacion-card tipo-@item.TipoMascota.ToLower()">
             <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.NombreMascota</h2>
-                <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100px;" />
+                <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100%;" />
                 <p>@item.Descripcion</p>
             </button>
         </div>
@@ -54,104 +56,118 @@ else
     @section Scripts {
         <script>
             function redirectToDetails(nroPublicacion) {
-                window.location.href = '/Publicaciones/Details/' + nroPublicacion;
+                window.location.href = '/Publicaciones/Details/' + nroPublicacion; // te redirige al detail de x publicacion.
             }
 
             function handleUserOptionsChange() {
-                var userOptions = document.getElementById('Opciones de Usuario');
+                var userOptions = document.getElementById('OpcionesDeUsuario');
                 if (userOptions.value === 'registrarse') {
-                    window.location.href = 'Usuarios/Create';
+                    window.location.href = 'Usuarios/Create';   // Te redirge a x direccion.
+                } else if (userOptions.value === 'Login') {
+                    window.location.href = 'Account/Login';
                 } else if (userOptions.value === 'Crear Publicacion') {
                     window.location.href = 'Publicaciones/Create';
                 }
             }
+
+            function filtrarPublicaciones() {
+                var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase();
+                var publicaciones = document.querySelectorAll('.publicacion-card');
+
+                publicaciones.forEach(function (pub) {
+                    var tipoMascota = pub.classList[1]; // Obtiene la clase de tipo de mascota (ej. "tipo-perro")
+
+                    if (filtro === '' || tipoMascota === 'tipo-' + filtro) {
+                        pub.style.display = 'block'; // Muestra la publicación si coincide con el filtro o no hay filtro
+                    } else {
+                        pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
+                    }
+                });
+            }
         </script>
-
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #333;
-                color: #fff;
-            }
-
-            .banner {
-                background-color: #444;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .filter-bar-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 10px;
-            }
-
-            .filter-bar {
-                margin-right: 10px;
-            }
-
-                .filter-bar select {
-                    padding: 8px;
-                    font-size: 16px;
-                    background-color: #555;
-                    color: #fff;
-                    border: none;
-                    border-radius: 4px;
-                }
-
-            .publicaciones-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 16px;
-                padding: 16px;
-                justify-items: center; 
-            }
-
-            .publicacion-card {
-                background-color: #666;
-                padding: 16px;
-                border-radius: 8px;
-                text-align: center;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                transition: transform 0.2s;
-                max-width: 300px; 
-                width: 100%;
-            }
-
-                .publicacion-card:hover {
-                    transform: scale(1.05);
-                }
-
-                .publicacion-card h2 {
-                    color: #4CAF50;
-                }
-
-                .publicacion-card img {
-                    max-width: 100%;
-                    height: auto;
-                    border-radius: 8px;
-                }
-
-                .publicacion-card p {
-                    margin-top: 10px;
-                    color: #fff;
-                }
-
-            .action-links {
-                margin-top: 10px;
-            }
-
-            .footer {
-                background-color: #444;
-                color: #fff;
-                text-align: center;
-                padding: 10px 0;
-                position: relative;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
     }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .banner {
+            background-color: #444;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .filter-bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .filter-bar {
+            margin-right: 10px;
+        }
+
+            .filter-bar select {
+                padding: 8px;
+                font-size: 16px;
+                background-color: #555;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+            }
+
+        .publicaciones-grid {
+            display: flex; /* Cambio a flexbox para alinear las publicaciones en una fila */
+            flex-wrap: wrap; /* Permite que las publicaciones se envuelvan en múltiples filas si es necesario */
+            gap: 16px; /* Espacio entre las publicaciones */
+            padding: 16px;
+            justify-content: center; /* Centra las publicaciones horizontalmente */
+        }
+
+        .publicacion-card {
+            background-color: #666;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            max-width: 300px;
+            width: 100%;
+            margin-bottom: 16px; /* Espacio entre las publicaciones */
+        }
+
+            .publicacion-card:hover {
+                transform: scale(1.05);
+            }
+
+            .publicacion-card h2 {
+                color: #4CAF50;
+            }
+
+            .publicacion-card img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            .publicacion-card p {
+                margin-top: 10px;
+                color: #fff;
+            }
+
+        .footer {
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
