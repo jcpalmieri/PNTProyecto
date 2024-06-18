@@ -36,9 +36,7 @@ else
         </div>
     </div>
 
-    <p>
-        <a asp-action="Create">Crear nueva Publicación</a>
-    </p>
+   
 
     <div class="publicaciones-grid">
         @foreach (var item in Model)
@@ -49,11 +47,6 @@ else
                 <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100px;" />
                 <p>@item.Descripcion</p>
             </button>
-            <div class="action-links">
-                <a asp-action="Edit" asp-route-id="@item.nroPublicacion">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.nroPublicacion">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.nroPublicacion">Eliminar</a>
-            </div>
         </div>
     }
     </div>

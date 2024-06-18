@@ -17,13 +17,13 @@ namespace PNTProyecto.Controllers
             _context = context;
         }
 
-        // GET: Publicacion
-        public IActionResult Index()
+        // GET: Publicaciones
+        public async Task<IActionResult> Index()
         {
-            return View(_context.Publicaciones.ToList());
+            return View(await _context.Publicaciones.ToListAsync());
         }
 
-        // GET: Publicacion/Details/5
+        // GET: Publicaciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,7 +32,7 @@ namespace PNTProyecto.Controllers
             }
 
             var publicacion = await _context.Publicaciones
-                .FirstOrDefaultAsync(m => m.NroPublicacion == id);
+                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -51,29 +51,41 @@ namespace PNTProyecto.Controllers
         // POST: Publicaciones/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NroPublicacion,NombreMascota,Imagen,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
+        public async Task<IActionResult> Create(Publicacion publicacion, IFormFile ImagenFile)
         {
             if (ModelState.IsValid)
             {
-                if (imagen != null && imagen.Length > 0)
+                if (ImagenFile != null && ImagenFile.Length > 0)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await imagen.CopyToAsync(memoryStream);
-                        publicacion.Imagen = memoryStream.ToArray();
-                        publicacion.ImagenMimeType = imagen.ContentType;
-                    }
-                }
+                    // Guardar la imagen en el servidor (por ejemplo, en la carpeta wwwroot/images)
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImagenFile.FileName;
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                _context.Add(publicacion);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImagenFile.CopyToAsync(stream);
+                    }
+
+                    // Almacenar la ruta de la imagen en el modelo
+                    publicacion.Imagen = "/images/" + uniqueFileName; // Ajusta la ruta según tu estructura de carpeta
+
+                    // Guardar el modelo en la base de datos
+                    _context.Add(publicacion);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
             }
+
+            // Si llegamos aquí, significa que hubo un error en el ModelState, volvemos a cargar la vista con el modelo y los ViewBag necesarios
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
 
-        // GET: Publicacion/Edit/5
+
+
+        // GET: Publicaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -89,12 +101,12 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // POST: Publicacion/Edit/5
+        // POST: Publicaciones/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion, IFormFile imagenFile)
         {
-            if (id != publicacion.NroPublicacion)
+            if (id != publicacion.nroPublicacion)
             {
                 return NotFound();
             }
@@ -103,12 +115,22 @@ namespace PNTProyecto.Controllers
             {
                 try
                 {
+                    // Procesar la imagen si se ha subido
+                    if (imagenFile != null && imagenFile.Length > 0)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await imagenFile.CopyToAsync(memoryStream);
+                            publicacion.Imagen = Convert.ToBase64String(memoryStream.ToArray()); // Convertir la imagen a base64
+                        }
+                    }
+
                     _context.Update(publicacion);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PublicacionExists(publicacion.NroPublicacion))
+                    if (!PublicacionExists(publicacion.nroPublicacion))
                     {
                         return NotFound();
                     }
@@ -122,7 +144,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // GET: Publicacion/Delete/5
+        // GET: Publicaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,7 +153,7 @@ namespace PNTProyecto.Controllers
             }
 
             var publicacion = await _context.Publicaciones
-                .FirstOrDefaultAsync(m => m.NroPublicacion == id);
+                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
             if (publicacion == null)
             {
                 return NotFound();
@@ -140,7 +162,7 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // POST: Publicacion/Delete/5
+        // POST: Publicaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -158,7 +180,7 @@ namespace PNTProyecto.Controllers
 
         private bool PublicacionExists(int id)
         {
-            return _context.Publicaciones.Any(e => e.NroPublicacion == id);
+            return _context.Publicaciones.Any(e => e.nroPublicacion == id);
         }
     }
 }

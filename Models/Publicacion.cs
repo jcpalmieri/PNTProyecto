@@ -3,7 +3,8 @@ namespace PNTProyecto.Models
 {
     public class Publicacion
  {
-    public int nroPublicacion { get; set; }
+        [Key]
+        public int nroPublicacion { get; set; }
     public string NombreMascota { get; set; }
     public string Imagen { get; set; }
     public string TipoMascota { get; set; } 
