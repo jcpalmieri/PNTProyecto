@@ -2,9 +2,16 @@
 
     @{
     ViewData["Title"] = "Publicaciones";
-    
-    }
 
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>User is logged in</p>
+    }
+    else
+    {
+        <p>User is not logged in</p>
+    }
     <header class="banner">
         <h1>Paticas&Corazones</h1>
     </header>
@@ -42,7 +49,6 @@
     </div>
 
     <footer class="footer">
-        
     </footer>
 
     @section Scripts {
@@ -66,20 +72,20 @@
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: #333; 
-                color: #fff; 
+                background-color: #333;
+                color: #fff;
             }
 
             .banner {
-                background-color: #444; 
+                background-color: #444;
                 text-align: center;
                 padding: 20px;
             }
 
             .filter-bar-container {
                 display: flex;
-                justify-content: center; 
-                align-items: center; 
+                justify-content: center;
+                align-items: center;
                 padding: 10px;
             }
 
@@ -90,8 +96,8 @@
                 .filter-bar select {
                     padding: 8px;
                     font-size: 16px;
-                    background-color: #555; 
-                    color: #fff; 
+                    background-color: #555;
+                    color: #fff;
                     border: none;
                     border-radius: 4px;
                 }
@@ -104,7 +110,7 @@
             }
 
             .publicacion-card {
-                background-color: #666; 
+                background-color: #666;
                 padding: 16px;
                 border-radius: 8px;
                 text-align: center;
@@ -132,7 +138,7 @@
                 }
 
             .footer {
-                background-color: #444; 
+                background-color: #444;
                 color: #fff;
                 text-align: center;
                 padding: 10px 0;
@@ -140,7 +146,6 @@
                 bottom: 0;
                 width: 100%;
             }
-
         </style>
     }
 

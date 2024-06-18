@@ -15,6 +15,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (User.Identity.IsAuthenticated)
+        {
+            ViewData["Message"] = "Usario registrado";
+        }
+        else
+        {
+            ViewData["Message"] = "Usuario no registrado";
+        }
         return View();
     }
 

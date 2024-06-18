@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PNTProyecto</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <ul class="nav navbar-nav navbar-right">
+        @if (User.Identity.IsAuthenticated)
+    {
+        <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+    }
+    else
+    {
+        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+    }
+    </ul>
     <style>
         body {
             font-family: Arial, sans-serif;

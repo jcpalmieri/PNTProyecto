@@ -2,21 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PNTProyecto.Models
 {
-    public class Usuario
+    public class LoginViewModel
     {
-        public int UsuarioId { get; set; }
-
-        [Required]
-        public string NombreUsuario { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [Required]
-        public string Telefono { get; set; }
     }
 }
