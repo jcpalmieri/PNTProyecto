@@ -18,9 +18,9 @@ else
     </header>
 
     <div class="filter-bar-container">
-        <div class="filter-bar">
+        <div class="filter-bar"> 
             <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
-                <option value="">Todas las publicaciones</option>
+                <option value="">Todas las publicaciones</option> 
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
                 <option value="ave">Ave</option>
@@ -33,6 +33,7 @@ else
                 <option value="">Opciones de Usuario</option>
                 <option value="registrarse">Registrarse</option>
                 <option value="Login">Login</option>
+                <option value="Login">Ir a perfil</option>
                 <option value="Crear Publicacion">Crear Publicacion</option>
             </select>
         </div>
@@ -71,14 +72,14 @@ else
             }
 
             function filtrarPublicaciones() {
-                var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase();
-                var publicaciones = document.querySelectorAll('.publicacion-card');
+                var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase();// Obtiene la opcion del filtro seleccionada, ej "Perro"
+                var publicaciones = document.querySelectorAll('.publicacion-card'); // selecciona todas las publicaciones
 
-                publicaciones.forEach(function (pub) {
-                    var tipoMascota = pub.classList[1]; // Obtiene la clase de tipo de mascota (ej. "tipo-perro")
+                publicaciones.forEach(function (pub) { // recorre toda la lista
+                    var tipoMascota = pub.classList[1]; 
 
-                    if (filtro === '' || tipoMascota === 'tipo-' + filtro) {
-                        pub.style.display = 'block'; // Muestra la publicación si coincide con el filtro o no hay filtro
+                    if (filtro === '' || tipoMascota === 'tipo-' + filtro) { // Si el filtro esta vacio o coincide con el tipo de la publicacion.
+                        pub.style.display = 'block'; // Lo muestra
                     } else {
                         pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
                     }
@@ -122,11 +123,11 @@ else
             }
 
         .publicaciones-grid {
-            display: flex; /* Cambio a flexbox para alinear las publicaciones en una fila */
-            flex-wrap: wrap; /* Permite que las publicaciones se envuelvan en múltiples filas si es necesario */
-            gap: 16px; /* Espacio entre las publicaciones */
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 16px; 
             padding: 16px;
-            justify-content: center; /* Centra las publicaciones horizontalmente */
+            justify-content: center; 
         }
 
         .publicacion-card {
@@ -138,7 +139,7 @@ else
             transition: transform 0.2s;
             max-width: 300px;
             width: 100%;
-            margin-bottom: 16px; /* Espacio entre las publicaciones */
+            margin-bottom: 16px; 
         }
 
             .publicacion-card:hover {
