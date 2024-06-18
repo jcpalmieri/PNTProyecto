@@ -2,16 +2,17 @@
 
     @{
     ViewData["Title"] = "Publicaciones";
+    }
 
-    }
     @if (User.Identity.IsAuthenticated)
-    {
-        <p>User is logged in</p>
-    }
-    else
-    {
-        <p>User is not logged in</p>
-    }
+{
+    <p>User is logged in</p>
+}
+else
+{
+    <p>User is not logged in</p>
+}
+
     <header class="banner">
         <h1>Paticas&Corazones</h1>
     </header>
@@ -35,21 +36,29 @@
         </div>
     </div>
 
+    <p>
+        <a asp-action="Create">Crear nueva Publicación</a>
+    </p>
+
     <div class="publicaciones-grid">
         @foreach (var item in Model)
-        {
+    {
         <div class="publicacion-card">
-            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
-                <h2>@item.nombreMascota</h2>
-                <img src="@item.imagen" alt="Imagen de la mascota">
-                <p>@item.descripcion</p>
+            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.NroPublicacion')">
+                <h2>@item.NombreMascota</h2>
+                <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100px;" />
+                <p>@item.Descripcion</p>
             </button>
+            <div class="action-links">
+                <a asp-action="Edit" asp-route-id="@item.NroPublicacion">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.NroPublicacion">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.NroPublicacion">Eliminar</a>
+            </div>
         </div>
-        }
+    }
     </div>
 
-    <footer class="footer">
-    </footer>
+    <footer class="footer"></footer>
 
     @section Scripts {
         <script>
@@ -137,6 +146,10 @@
                     color: #fff;
                 }
 
+            .action-links {
+                margin-top: 10px;
+            }
+
             .footer {
                 background-color: #444;
                 color: #fff;
@@ -148,6 +161,3 @@
             }
         </style>
     }
-
-
-

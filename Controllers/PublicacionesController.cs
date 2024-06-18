@@ -41,28 +41,28 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-        // GET: Publicacion/Create
+        // GET: Publicaciones/Create
         public IActionResult Create()
         {
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View();
         }
 
-        // POST: Publicacion/Create
+        // POST: Publicaciones/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NombreMascota,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
+        public async Task<IActionResult> Create([Bind("NroPublicacion,NombreMascota,Imagen,Descripcion,TipoMascota,Contacto")] Publicacion publicacion, IFormFile imagen)
         {
             if (ModelState.IsValid)
             {
                 if (imagen != null && imagen.Length > 0)
                 {
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", imagen.FileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    using (var memoryStream = new MemoryStream())
                     {
-                        await imagen.CopyToAsync(stream);
+                        await imagen.CopyToAsync(memoryStream);
+                        publicacion.Imagen = memoryStream.ToArray();
+                        publicacion.ImagenMimeType = imagen.ContentType;
                     }
-                    publicacion.Imagen = "/images/" + imagen.FileName;
                 }
 
                 _context.Add(publicacion);
