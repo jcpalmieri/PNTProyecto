@@ -6,41 +6,63 @@
 
 <h2>Crear Publicación</h2>
 
-<h4>Publicacion</h4>
+<h4>Publicación</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @using (Html.BeginForm("Create", "Publicaciones", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             <div class="form-group">
-                <label asp-for="NombreMascota" class="control-label"></label>
-                <input asp-for="NombreMascota" class="form-control" />
-                <span asp-validation-for="NombreMascota" class="text-danger"></span>
+                @Html.LabelFor(model => model.NombreMascota, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NombreMascota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NombreMascota, "", new { @class = "text-danger" })
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Imagen" class="control-label"></label>
-                <input type="file" asp-for="Imagen" class="form-control-file" />
-                <span asp-validation-for="Imagen" class="text-danger"></span>
+                @Html.Label("Imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="ImagenFile" name="ImagenFile" />
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <textarea asp-for="Descripcion" class="form-control"></textarea>
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="TipoMascota" class="control-label"></label>
-                <select asp-for="TipoMascota" class="form-control" asp-items="@(new SelectList(ViewBag.TipoMascotas))"></select>
-                <span asp-validation-for="TipoMascota" class="text-danger"></span>
+                @Html.LabelFor(model => model.TipoMascota, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TipoMascota, new SelectList(ViewBag.TipoMascotas), "-- Seleccione --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TipoMascota, "", new { @class = "text-danger" })
+                </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="Contacto" class="control-label"></label>
-                <input asp-for="Contacto" class="form-control" />
-                <span asp-validation-for="Contacto" class="text-danger"></span>
+                @Html.LabelFor(model => model.Contacto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Contacto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Contacto, "", new { @class = "text-danger" })
+                </div>
             </div>
+
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Crear</button>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
             </div>
-        </form>
+        </div>
+        }
     </div>
 </div>
 

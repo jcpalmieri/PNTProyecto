@@ -12,10 +12,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NroPublicacion)
+            @Html.DisplayNameFor(model => model.nroPublicacion)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NroPublicacion)
+            @Html.DisplayFor(model => model.nroPublicacion)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NombreMascota)
@@ -35,10 +35,22 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoMascota)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoMascota)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contacto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contacto)
+        </dd>
     </dl>
 
     <form asp-action="DeleteConfirmed">
-        <input type="hidden" asp-for="NroPublicacion" />
+        <input type="hidden" asp-for="nroPublicacion" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
         <a asp-action="Index">Cancelar</a>
     </form>

@@ -44,15 +44,15 @@ else
         @foreach (var item in Model)
     {
         <div class="publicacion-card">
-            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.NroPublicacion')">
+            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.NombreMascota</h2>
                 <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100px;" />
                 <p>@item.Descripcion</p>
             </button>
             <div class="action-links">
-                <a asp-action="Edit" asp-route-id="@item.NroPublicacion">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.NroPublicacion">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.NroPublicacion">Eliminar</a>
+                <a asp-action="Edit" asp-route-id="@item.nroPublicacion">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.nroPublicacion">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.nroPublicacion">Eliminar</a>
             </div>
         </div>
     }

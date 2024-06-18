@@ -11,12 +11,6 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NroPublicacion)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NroPublicacion)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.NombreMascota)
         </dt>
         <dd class="col-sm-10">
@@ -34,9 +28,21 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoMascota)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TipoMascota)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contacto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contacto)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.NroPublicacion">Editar</a> |
+    <a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a> |
     <a asp-action="Index">Volver al listado</a>
 </div>
