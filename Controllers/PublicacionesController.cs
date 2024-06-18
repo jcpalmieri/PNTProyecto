@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PNTProyecto.Controllers
 {
     public class PublicacionesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public PublicacionesController(ApplicationDbContext context)
+        public PublicacionesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Publicaciones
@@ -51,37 +54,22 @@ namespace PNTProyecto.Controllers
         // POST: Publicaciones/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Publicacion publicacion, IFormFile ImagenFile)
+        public async Task<IActionResult> Create(Publicacion publicacion)
         {
             if (ModelState.IsValid)
             {
-                if (ImagenFile != null && ImagenFile.Length > 0)
-                {
-                    // Guardar la imagen en el servidor (por ejemplo, en la carpeta wwwroot/images)
-                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImagenFile.FileName;
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                // Puedes validar aquí la URL de la imagen si es necesario
 
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await ImagenFile.CopyToAsync(stream);
-                    }
-
-                    // Almacenar la ruta de la imagen en el modelo
-                    publicacion.Imagen = "/images/" + uniqueFileName; // Ajusta la ruta según tu estructura de carpeta
-
-                    // Guardar el modelo en la base de datos
-                    _context.Add(publicacion);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction(nameof(Index));
-                }
+                _context.Add(publicacion);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
 
-            // Si llegamos aquí, significa que hubo un error en el ModelState, volvemos a cargar la vista con el modelo y los ViewBag necesarios
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
+
+
 
 
 
