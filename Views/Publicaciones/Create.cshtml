@@ -26,9 +26,9 @@
             </div>
 
             <div class="form-group">
-                @Html.Label("URL de Imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2" for="ImagenUrl">URL de Imagen</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextBoxFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control", id = "ImagenUrl" } })
                     @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
                 </div>
             </div>

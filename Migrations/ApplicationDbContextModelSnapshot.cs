@@ -29,15 +29,23 @@ namespace PNTProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("nroPublicacion"));
 
-                    b.Property<string>("descripcion")
+                    b.Property<string>("Contacto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("imagen")
+                    b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nombreMascota")
+                    b.Property<string>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreMascota")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoMascota")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
