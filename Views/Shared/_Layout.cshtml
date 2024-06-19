@@ -70,12 +70,11 @@
 </head>
 <body>
     <header>
-        <h1>@ViewData["Title"] - PNTProyecto</h1>
+        <h1>@ViewData["Title"] - Patitas&Corazones</h1>
     </header>
     <nav class="navbar">
         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         <a asp-area="" asp-controller="Publicaciones" asp-action="Index">Publicaciones</a>
-        <a asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
         <div class="filter-bar">
             <select id="OpcionesDeUsuario" onchange="handleUserOptionsChange()">
                 <option value="">Opciones de Usuario</option>
@@ -101,10 +100,10 @@
                 } else if (userOptions.value === 'Login') {
                     window.location.href = 'Account/Login';
                 } else if (userOptions.value === 'Crear Publicacion') {
-                    window.location.href = 'Publicaciones/Create';
+                    window.location.href = '/Publicaciones/Create';
                 }
+            }
         </script>
-        }
     </nav>
     <div class="container">
         <main role="main" class="pb-3">
