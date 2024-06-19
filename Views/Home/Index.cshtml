@@ -7,6 +7,9 @@
     {
         <li class="nav-item">
             <span class="navbar-text">Welcome, @User.Identity.Name!</span>
+        <li class="nav-item">
+            <a class="nav-link btn btn-primary" href="Publicaciones/index">Ir a la página principal</a>
+        </li>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="@Url.Action("Logout", "Account")">Logout</a>
@@ -26,12 +29,12 @@
 
 @section Scripts {
     <script>
-        // Evento para el botón de Registrarse
+        // va para el registro
         document.getElementById('btnRegistrarse').addEventListener('click', function() {
             window.location.href = 'Usuarios/Create'; 
         });
 
-        // Evento para el botón de Login
+        // Va para el login
         document.getElementById('btnLogin').addEventListener('click', function() {
             window.location.href = 'Account/Login'; 
         });

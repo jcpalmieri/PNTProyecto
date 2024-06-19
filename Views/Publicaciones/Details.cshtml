@@ -4,6 +4,15 @@
     ViewData["Title"] = "Detalles de Publicación";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    <p>User is logged in</p>
+}
+else
+{
+    <p>User is not logged in</p>
+}
+
 <h2>Detalles de Publicación</h2>
 
 <div>
@@ -45,6 +54,8 @@
 </div>
 
 <div>
+    @if (User.Identity.IsAuthenticated)
+    {
     <button type="button" onclick="mostrarContacto()" class="btn btn-primary">Me Gusta</button>
     <script>
     function mostrarContacto() {
@@ -52,12 +63,7 @@
         alert('El número de telefono del usuario es: ' + contacto);
     }
     </script>
-    <button type="button" onclick="volverPublicaciones()" class="btn btn-primary">No me gusta</button>
-    <script>
-        function volverPublicaciones() {
-            window.location.href = '../'; // regresa a la pagina de publicaciones
-        }
-    </script>
+    }
 </div>
 
 <div>

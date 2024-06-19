@@ -35,7 +35,7 @@ else
              
             @if (User.Identity.IsAuthenticated)
             {
-                <option value="Login">Ir a perfil</option>
+                <option value="Ir a perfil">Ir a perfil</option>
                 <option value="Crear Publicacion">Crear Publicacion</option>
             } else
             {
@@ -51,11 +51,11 @@ else
         @foreach (var item in Model)
     {
         <div class="publicacion-card tipo-@item.TipoMascota.ToLower()">
-            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
-                <h2>@item.NombreMascota</h2>
-                <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100%;" />
-                <p>@item.Descripcion</p>
-            </button>
+                <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
+                    <h2>@item.NombreMascota</h2>
+                    <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100%;" />
+                    <p>@item.Descripcion</p>
+                </button>
         </div>
     }
     </div>
@@ -76,7 +76,7 @@ else
                     window.location.href = 'Account/Login';
                 } else if (userOptions.value === 'Crear Publicacion') {
                     window.location.href = 'Publicaciones/Create';
-                }
+                } 
             }
 
             function filtrarPublicaciones() {
