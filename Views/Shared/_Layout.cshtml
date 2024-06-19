@@ -76,6 +76,35 @@
         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
         <a asp-area="" asp-controller="Publicaciones" asp-action="Index">Publicaciones</a>
         <a asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+        <div class="filter-bar">
+            <select id="OpcionesDeUsuario" onchange="handleUserOptionsChange()">
+                <option value="">Opciones de Usuario</option>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <option value="Ir a perfil">Ir a perfil</option>
+                    <option value="Crear Publicacion">Crear Publicacion</option>
+                }
+                else
+                {
+                    <option value="registrarse">Registrarse</option>
+                    <option value="Login">Login</option>
+                }
+
+            </select>
+        </div>
+        <script>
+            function handleUserOptionsChange() {
+                var userOptions = document.getElementById('OpcionesDeUsuario');
+                if (userOptions.value === 'registrarse') {
+                    window.location.href = 'Usuarios/Create';   // Te redirge a x direccion.
+                } else if (userOptions.value === 'Login') {
+                    window.location.href = 'Account/Login';
+                } else if (userOptions.value === 'Crear Publicacion') {
+                    window.location.href = 'Publicaciones/Create';
+                }
+        </script>
+        }
     </nav>
     <div class="container">
         <main role="main" class="pb-3">

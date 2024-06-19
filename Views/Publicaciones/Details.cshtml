@@ -31,11 +31,11 @@ else
         <dd class="col-sm-10">
             @if (!string.IsNullOrEmpty(Model.Imagen))
             {
-            <img src="@Model.Imagen" alt="@Model.NombreMascota" style="max-width: 200px;" />
+                <img src="@Model.Imagen" alt="@Model.NombreMascota" style="max-width: 200px;" />
             }
             else
             {
-            <p>No hay imagen disponible.</p>
+                <p>No hay imagen disponible.</p>
             }
         </dd>
         <dt class="col-sm-2">
@@ -56,18 +56,26 @@ else
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-    <button type="button" onclick="mostrarContacto()" class="btn btn-primary">Me Gusta</button>
-    <script>
-    function mostrarContacto() {
-        var contacto = '@Model.Contacto'; // es el número de contacto.
-        alert('El número de telefono del usuario es: ' + contacto);
+        <button type="button" onclick="mostrarContacto()" class="btn btn-primary">Me Gusta</button>
+        <script>
+            function mostrarContacto() {
+                var contacto = '@Model.Contacto'; // es el número de contacto.
+                alert('El número de telefono del usuario es: ' + contacto);
+            }
+        </script>
     }
-    </script>
+    else
+    {
+        <button type="button" onclick="alertarNoAutenticado()" class="btn btn-primary">Me Gusta</button>
+        <script>
+            function alertarNoAutenticado() {
+                alert('No estas registrado para poder interactuar por acá, una vez registrado podrás darle a me gusta a esta u otras publicaciones');
+            }
+        </script>
     }
 </div>
 
 <div>
-    
     <a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a> |
     <a asp-action="Index">Volver al listado</a>
 </div>
