@@ -756,4 +756,3 @@ C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\obj\Debug\net8.0\refint\PNTPr
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\obj\Debug\net8.0\PNTProyecto.pdb
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\obj\Debug\net8.0\PNTProyecto.genruntimeconfig.cache
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\obj\Debug\net8.0\ref\PNTProyecto.dll
-C:\Users\User\Source\Repos\PNTProyecto\bin\Debug\net8.0\appsettings.json
