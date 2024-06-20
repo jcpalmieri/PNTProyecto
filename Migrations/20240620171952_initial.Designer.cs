@@ -11,7 +11,7 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240618220301_initial")]
+    [Migration("20240620171952_initial")]
     partial class initial
     {
         /// <inheritdoc />
