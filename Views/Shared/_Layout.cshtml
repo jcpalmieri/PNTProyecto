@@ -81,7 +81,7 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <option value="Ir a perfil">Ir a perfil</option>
+                    <option value="perfil">Ir a perfil</option>
                     <option value="Crear Publicacion">Crear Publicacion</option>
                 }
                 else
@@ -101,6 +101,8 @@
                     window.location.href = 'Account/Login';
                 } else if (userOptions.value === 'Crear Publicacion') {
                     window.location.href = '/Publicaciones/Create';
+                } else if (userOptions.value === 'perfil') {
+                window.location.href = '/Perfil/Index';
                 }
             }
         </script>

@@ -106,6 +106,25 @@ namespace PNTProyecto.Controllers
 
             return View(usuario);
         }
+       
+        [HttpGet("Usuarios/DetailsByEmailOrUsername/{emailOrUsername}")]
+        public async Task<IActionResult> DetailsByEmailOrUsername(string emailOrUsername)
+        {
+            if (string.IsNullOrEmpty(emailOrUsername))
+            {
+                return BadRequest("Email or username is required.");
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Email == emailOrUsername || u.NombreUsuario == emailOrUsername);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new { usuario.Email, usuario.Telefono });
+        }
 
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
