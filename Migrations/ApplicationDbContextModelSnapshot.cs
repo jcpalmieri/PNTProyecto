@@ -49,6 +49,9 @@ namespace PNTProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("nroPublicacion");
 
                     b.ToTable("Publicaciones");

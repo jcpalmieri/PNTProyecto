@@ -23,6 +23,7 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Publicaciones.ToListAsync());
         }
 
@@ -51,21 +52,36 @@ namespace PNTProyecto.Controllers
             return View();
         }
 
-        // POST: Publicaciones/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Publicacion publicacion)
         {
             if (ModelState.IsValid)
             {
-                // Puedes validar aquí la URL de la imagen si es necesario
+                // Obtener el nombre de usuario del usuario autenticado
+                var userName = User.Identity.Name;
 
-                _context.Add(publicacion);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // Buscar el UsuarioId en la base de datos
+                var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == userName);
+
+                if (usuario != null)
+                {
+                    // Asignar el UsuarioId a la publicación
+                    publicacion.UsuarioId = usuario.UsuarioId;
+
+                    // Agregar y guardar la publicación en la base de datos
+                    _context.Publicaciones.Add(publicacion);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Usuario no encontrado.");
+                }
             }
 
-            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
+            ViewBag.TipoMascotas = new SelectList(new List<string> { "Perro", "Gato", "Ave", "Otro" });
             return View(publicacion);
         }
 

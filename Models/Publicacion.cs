@@ -3,12 +3,14 @@ namespace PNTProyecto.Models
 {
     public class Publicacion
  {
-        [Key]
-        public int nroPublicacion { get; set; }
-    public string NombreMascota { get; set; }
-    public string Imagen { get; set; }
-    public string TipoMascota { get; set; } 
-    public string Descripcion { get; set; }
-    public string Contacto { get; set; }
- }
+     [Key]
+     public int nroPublicacion { get; set; }
+     public string NombreMascota { get; set; }
+     public string Imagen { get; set; }
+     public string TipoMascota { get; set; } 
+     public string Descripcion { get; set; }
+     public string Contacto { get; set; }
+
+     public int UsuarioId { get; set; }
+    }
 }

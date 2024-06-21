@@ -20,7 +20,8 @@ namespace PNTProyecto.Migrations
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TipoMascota = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contacto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Contacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
