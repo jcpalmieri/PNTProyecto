@@ -11,7 +11,7 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240621163541_addPublicaciones")]
+    [Migration("20240622143904_addPublicaciones")]
     partial class addPublicaciones
     {
         /// <inheritdoc />

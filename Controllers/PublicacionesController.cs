@@ -88,7 +88,6 @@ namespace PNTProyecto.Controllers
 
 
 
-
         // GET: Publicaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -102,13 +101,16 @@ namespace PNTProyecto.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" }; // Lista de tipos de mascotas disponibles
+
             return View(publicacion);
         }
 
         // POST: Publicaciones/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion, IFormFile imagenFile)
+        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion)
         {
             if (id != publicacion.nroPublicacion)
             {
@@ -119,18 +121,26 @@ namespace PNTProyecto.Controllers
             {
                 try
                 {
-                    // Procesar la imagen si se ha subido
-                    if (imagenFile != null && imagenFile.Length > 0)
-                    {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            await imagenFile.CopyToAsync(memoryStream);
-                            publicacion.Imagen = Convert.ToBase64String(memoryStream.ToArray()); // Convertir la imagen a base64
-                        }
-                    }
+                    // Obtener el nombre de usuario del usuario autenticado
+                    var userName = User.Identity.Name;
 
-                    _context.Update(publicacion);
-                    await _context.SaveChangesAsync();
+                    // Buscar el UsuarioId en la base de datos
+                    var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == userName);
+
+                    if (usuario != null)
+                    {
+                        // Asignar el UsuarioId al objeto Publicacion
+                        publicacion.UsuarioId = usuario.UsuarioId;
+
+                        _context.Update(publicacion);
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Usuario no encontrado.");
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -143,10 +153,15 @@ namespace PNTProyecto.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
+            // Si llegamos aquí, significa que hubo errores de validación o excepciones
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" }; // Lista de tipos de mascotas disponibles
+
             return View(publicacion);
         }
+
+
 
         // GET: Publicaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
