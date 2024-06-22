@@ -106,7 +106,7 @@ namespace PNTProyecto.Controllers
 
             return View(usuario);
         }
-       
+
         [HttpGet("Usuarios/DetailsByEmailOrUsername/{emailOrUsername}")]
         public async Task<IActionResult> DetailsByEmailOrUsername(string emailOrUsername)
         {
@@ -123,8 +123,17 @@ namespace PNTProyecto.Controllers
                 return NotFound();
             }
 
-            return Ok(new { usuario.Email, usuario.Telefono });
+            // esto seria un objeto respuesta.
+            var responseObj = new
+            {
+                usuario.UsuarioId,
+                usuario.Email,
+                usuario.Telefono
+            };
+
+            return Ok(responseObj);
         }
+
 
         // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
