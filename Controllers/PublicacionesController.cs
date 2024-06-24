@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using PNTProyecto.Models;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,7 +23,6 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones
         public async Task<IActionResult> Index()
         {
-
             return View(await _context.Publicaciones.ToListAsync());
         }
 
@@ -37,6 +36,7 @@ namespace PNTProyecto.Controllers
 
             var publicacion = await _context.Publicaciones
                 .FirstOrDefaultAsync(m => m.nroPublicacion == id);
+
             if (publicacion == null)
             {
                 return NotFound();
@@ -58,18 +58,12 @@ namespace PNTProyecto.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Obtener el nombre de usuario del usuario autenticado
                 var userName = User.Identity.Name;
-
-                // Buscar el UsuarioId en la base de datos
                 var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == userName);
 
                 if (usuario != null)
                 {
-                    // Asignar el UsuarioId a la publicación
                     publicacion.UsuarioId = usuario.UsuarioId;
-
-                    // Agregar y guardar la publicación en la base de datos
                     _context.Publicaciones.Add(publicacion);
                     await _context.SaveChangesAsync();
 
@@ -85,9 +79,6 @@ namespace PNTProyecto.Controllers
             return View(publicacion);
         }
 
-
-
-
         // GET: Publicaciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -97,13 +88,13 @@ namespace PNTProyecto.Controllers
             }
 
             var publicacion = await _context.Publicaciones.FindAsync(id);
+
             if (publicacion == null)
             {
                 return NotFound();
             }
 
-            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" }; // Lista de tipos de mascotas disponibles
-
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
 
@@ -121,17 +112,12 @@ namespace PNTProyecto.Controllers
             {
                 try
                 {
-                    // Obtener el nombre de usuario del usuario autenticado
                     var userName = User.Identity.Name;
-
-                    // Buscar el UsuarioId en la base de datos
                     var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == userName);
 
                     if (usuario != null)
                     {
-                        // Asignar el UsuarioId al objeto Publicacion
                         publicacion.UsuarioId = usuario.UsuarioId;
-
                         _context.Update(publicacion);
                         await _context.SaveChangesAsync();
 
@@ -155,13 +141,9 @@ namespace PNTProyecto.Controllers
                 }
             }
 
-            // Si llegamos aquí, significa que hubo errores de validación o excepciones
-            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" }; // Lista de tipos de mascotas disponibles
-
+            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
-
-
 
         // GET: Publicaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -171,8 +153,8 @@ namespace PNTProyecto.Controllers
                 return NotFound();
             }
 
-            var publicacion = await _context.Publicaciones
-                .FirstOrDefaultAsync(m => m.nroPublicacion == id);
+            var publicacion = await _context.Publicaciones.FirstOrDefaultAsync(m => m.nroPublicacion == id);
+
             if (publicacion == null)
             {
                 return NotFound();
@@ -187,6 +169,7 @@ namespace PNTProyecto.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var publicacion = await _context.Publicaciones.FindAsync(id);
+
             if (publicacion == null)
             {
                 return NotFound();
@@ -194,6 +177,7 @@ namespace PNTProyecto.Controllers
 
             _context.Publicaciones.Remove(publicacion);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
