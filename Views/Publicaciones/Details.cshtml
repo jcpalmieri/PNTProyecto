@@ -46,22 +46,30 @@
 </div>
 
 <div>
-    <button type="button" onclick="toggleMeGusta(@Model.nroPublicacion)" class="btn btn-info">Me Gusta</button>
+    @if (Model.UsuarioId == currentUserId)
+{
+    <ul><a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a> </ul>
+}
 </div>
 
-@if (Model.UsuarioId == currentUserId)
-{
-<h4>Usuarios Interesados</h4>
-<ul>
-    @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
-        {
-    <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
-        }
-</ul>
-}
+<div>
+    @if (Model.UsuarioId != currentUserId)
+    {
+    <button type="button" onclick="toggleMeGusta(@Model.nroPublicacion)" class="btn btn-info">Me Gusta</button>
+    }
+</div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a> |
+    @if (Model.UsuarioId == currentUserId)
+    {
+    <h4>Usuarios Interesados</h4>
+    <ul>
+        @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
+            {
+        <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
+            }
+    </ul>
+    }
     <a asp-action="Index">Volver al listado</a>
 </div>
 
