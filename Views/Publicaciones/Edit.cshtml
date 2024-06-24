@@ -79,3 +79,74 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a; /* Color de fondo oscuro */
+        color: #eee; /* Color de texto claro */
+    }
+
+    h2 {
+        color: #4CAF50; /* Color del título */
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: #ccc; /* Color del subtítulo */
+    }
+
+    hr {
+        border-color: #444; /* Color de la línea divisoria */
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .form-horizontal .control-label {
+        color: #ccc; /* Color de las etiquetas de los campos */
+    }
+
+    .form-control {
+        background-color: #333; /* Color de fondo del input */
+        color: #eee; /* Color del texto dentro del input */
+        border: 1px solid #555; /* Borde del input */
+    }
+
+        .form-control:focus {
+            border-color: #4CAF50; /* Color del borde al estar enfocado */
+        }
+
+    .text-muted {
+        color: #888; /* Color del texto pequeño */
+    }
+
+    .btn-primary {
+        background-color: #4CAF50; /* Color de fondo del botón */
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #45a049; /* Color de fondo del botón al pasar el mouse */
+        }
+
+    .text-danger {
+        color: #ff6666; /* Color del texto de error */
+    }
+
+    .col-md-offset-2 {
+        margin-left: 16.66666667%; /* Alineación del botón */
+    }
+
+    a {
+        color: #4CAF50; /* Color del enlace */
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #45a049; /* Color del enlace al pasar el mouse */
+        }
+</style>
+

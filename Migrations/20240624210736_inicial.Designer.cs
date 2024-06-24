@@ -11,8 +11,8 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240624163145_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240624210736_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace PNTProyecto.Migrations
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UsuarioInteresado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("nroPublicacion");
 
