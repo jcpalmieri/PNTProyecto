@@ -5,7 +5,7 @@
 namespace PNTProyecto.Migrations
 {
     /// <inheritdoc />
-    public partial class addUsuario : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

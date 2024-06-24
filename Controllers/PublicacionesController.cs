@@ -6,18 +6,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 namespace PNTProyecto.Controllers
 {
     public class PublicacionesController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly ILogger<PublicacionesController> _logger;
 
-        public PublicacionesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
+        public PublicacionesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment, ILogger<PublicacionesController> logger)
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
         }
 
         // GET: Publicaciones
@@ -26,7 +29,14 @@ namespace PNTProyecto.Controllers
             return View(await _context.Publicaciones.ToListAsync());
         }
 
-        // GET: Publicaciones/Details/5
+        public async Task<IActionResult> MisPublicaciones(int usuarioId)
+        {
+            var publicaciones = await _context.Publicaciones
+                .Where(p => p.UsuarioId == usuarioId)
+                .ToListAsync();
+            return View("Index", publicaciones);
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,6 +51,8 @@ namespace PNTProyecto.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
 
             return View(publicacion);
         }
@@ -184,6 +196,66 @@ namespace PNTProyecto.Controllers
         private bool PublicacionExists(int id)
         {
             return _context.Publicaciones.Any(e => e.nroPublicacion == id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleMeGusta([FromBody] ToggleMeGustaRequest request)
+        {
+            var publicacionId = request.PublicacionId;
+            var userId = HttpContext.Session.GetInt32("UserId");
+
+            _logger.LogInformation("ToggleMeGusta action called for PublicacionId: {publicacionId} by UserId: {userId}", publicacionId, userId);
+
+            if (userId == null)
+            {
+                return Json(new { success = false, message = "Usuario no autenticado." });
+            }
+
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.UsuarioId == userId.Value);
+
+            if (usuario == null)
+            {
+                return Json(new { success = false, message = "Usuario no encontrado." });
+            }
+
+            var publicacion = await _context.Publicaciones.FindAsync(publicacionId);
+
+            if (publicacion == null)
+            {
+                return Json(new { success = false, message = "Publicación no encontrada." });
+            }
+
+            var usuariosInteresados = string.IsNullOrEmpty(publicacion.UsuarioInteresado)
+                ? new List<string>()
+                : publicacion.UsuarioInteresado.Split(',').ToList();
+
+            if (usuariosInteresados.Contains(usuario.UsuarioId.ToString()))
+            {
+                usuariosInteresados.Remove(usuario.UsuarioId.ToString());
+            }
+            else
+            {
+                usuariosInteresados.Add(usuario.UsuarioId.ToString());
+            }
+
+            publicacion.UsuarioInteresado = string.Join(",", usuariosInteresados);
+
+            try
+            {
+                _context.Update(publicacion);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Me Gusta toggled correctamente." });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al guardar los cambios.");
+                return Json(new { success = false, message = "Error al guardar los cambios." });
+            }
+        }
+
+        public class ToggleMeGustaRequest
+        {
+            public int PublicacionId { get; set; }
         }
     }
 }

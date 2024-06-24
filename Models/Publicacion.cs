@@ -10,7 +10,7 @@ namespace PNTProyecto.Models
      public string TipoMascota { get; set; } 
      public string Descripcion { get; set; }
      public string Contacto { get; set; }
-
-     public int UsuarioId { get; set; }
+    public string? UsuarioInteresado { get; set; }
+    public int UsuarioId { get; set; }
     }
 }

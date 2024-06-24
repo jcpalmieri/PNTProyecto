@@ -46,6 +46,9 @@ namespace PNTProyecto.Controllers
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
 
+                // Guardar el ID del usuario en la sesión
+                HttpContext.Session.SetInt32("UserId", usuario.UsuarioId);
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -57,15 +60,18 @@ namespace PNTProyecto.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Eliminar el ID del usuario de la sesión
+            HttpContext.Session.Remove("UserId");
+
             return RedirectToAction("Login", "Account");
         }
 
-    
         public IActionResult AccessDenied()
         {
             return View();
         }
-     
+
         public bool IsLoggedIn()
         {
             return User.Identity.IsAuthenticated;
