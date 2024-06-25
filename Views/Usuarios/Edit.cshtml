@@ -12,12 +12,12 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div class="form-group">
-                <input type="hidden" asp-for="UsuarioId" />
+                <type ="hidden" asp-for="UsuarioId" />
                 <label asp-for="NombreUsuario" class="control-label"></label>
                 <input asp-for="NombreUsuario" class="form-control" />
                 <span asp-validation-for="NombreUsuario" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="emailFormGroup">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -27,7 +27,7 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="telefonoFormGroup">
                 <label asp-for="Telefono" class="control-label"></label>
                 <input asp-for="Telefono" class="form-control" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
@@ -39,10 +39,51 @@
     </div>
 </div>
 
-<div>
+<div id="Index1">
     <a asp-action="Index">Back to List</a>
 </div>
+<div id="Index2">
+    <a href="#" onclick="goBack()">Ir a perfil</a>
+</div>
+
+<script>
+    function goBack() {
+        var referrer = document.referrer;
+
+        if (referrer && referrer !== '') {
+            window.location.href = referrer;
+        } else {
+            window.location.href = '@Url.Action("Index", "Perfil")';
+        }
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const referrerURL = '/Perfil/';
+
+        if (document.referrer.includes(referrerURL)) {
+            document.getElementById('emailFormGroup').classList.add('hidden');
+            document.getElementById('telefonoFormGroup').classList.add('hidden');
+            document.getElementById('Index1').classList.add('hidden');
+
+        } else {
+            document.getElementById('Index2').classList.add('hidden');
+
+        }
+    });
+</script>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
 }
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>

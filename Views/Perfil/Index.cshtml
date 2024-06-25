@@ -16,8 +16,32 @@
             <div class="button-container">
                 <button type="submit">Ver mis publicaciones</button>
             </div>
+            <div class="button-container">
+                <button id="editButton" type="button" class="btn btn-primary">Edit</button>
+            </div>
         </form>
+
+
+        <a id="editLink" href="#" style="display: none;">Edit</a>
+
+
+
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const editButton = document.getElementById('editButton');
+
+            editButton.addEventListener('click', () => {
+
+                // Redirigir a la URL especificada
+                window.location.href = editLink.href
+            });     // Redirigir a la URL especificada
+
+
+        });
+    </script>
+
 
     <script>
         async function getUserDetails() {
@@ -34,14 +58,17 @@
 
                 const userDetailsDiv = document.getElementById('userDetails');
                 userDetailsDiv.innerHTML = `
-                    <p><strong>Nombre de usuario:</strong> ${identifier}</p>
-                    <p><strong>Email:</strong> ${data.email}</p>
-                    <p><strong>Telefono:</strong> ${data.telefono}</p>
-                    <p><strong>UsuarioId:</strong> ${data.usuarioId}</p>
-                `;
+                            <p><strong>Nombre de usuario:</strong> ${identifier}</p>
+                            <p><strong>Email:</strong> ${data.email}</p>
+                            <p><strong>Telefono:</strong> ${data.telefono}</p>
+                            <p><strong>UsuarioId:</strong> ${data.usuarioId}</p>
+                        `;
 
                 const usuarioIdInput = document.getElementById('usuarioIdInput');
                 usuarioIdInput.value = data.usuarioId;
+
+                const editLink = document.getElementById('editLink');
+                editLink.href = `/Usuarios/Edit/${data.usuarioId}`;
 
                 const form = document.getElementById('misPublicacionesForm');
                 form.style.display = 'block';

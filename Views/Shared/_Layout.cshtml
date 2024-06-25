@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PNTProyecto</title>
     <link rel="stylesheet" href="~/css/site.css" />
-   
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,6 +74,7 @@
                 {
                     <option value="perfil">Ir a perfil</option>
                     <option value="Crear Publicacion">Crear Publicacion</option>
+                    <option value="Logout">Logout</option>
                 }
                 else
                 {
@@ -93,7 +94,9 @@
                 } else if (userOptions.value === 'Crear Publicacion') {
                     window.location.href = '../Publicaciones/Create';
                 } else if (userOptions.value === 'perfil') {
-                window.location.href = '/Perfil/Index';
+                    window.location.href = '/Perfil/Index';
+                } else if (userOptions.value === 'Logout') {
+                    window.location.href = '@Url.Action("Logout", "Account")';
                 }
             }
         </script>

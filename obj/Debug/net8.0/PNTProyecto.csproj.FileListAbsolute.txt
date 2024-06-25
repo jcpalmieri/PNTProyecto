@@ -252,7 +252,6 @@ C:\Users\Agustin\source\repos\PNTProyecto\bin\Debug\net8.0\runtimes\win\lib\net7
 C:\Users\Agustin\source\repos\PNTProyecto\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Agustin\source\repos\PNTProyecto\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\bin\Debug\net8.0\appsettings.json
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\bin\Debug\net8.0\PNTProyecto.staticwebassets.runtime.json
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\bin\Debug\net8.0\PNTProyecto.exe
 C:\Users\juanc\source\repos\jcpalmieri\PNTProyecto\bin\Debug\net8.0\PNTProyecto.deps.json
