@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PNTProyecto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1345ea0e21af9d43c2c5fb4cc5af5f3b75bed70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3cf53bbbbd29b2221918abb05f6acec23488006")]
 [assembly: System.Reflection.AssemblyProductAttribute("PNTProyecto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PNTProyecto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -211,7 +211,7 @@ namespace PNTProyecto.Controllers
                 return Json(new { success = false, message = "Usuario no autenticado." });
             }
 
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.UsuarioId == userId.Value);
+            var usuario = await _context.Usuarios.FindAsync(userId.Value);
 
             if (usuario == null)
             {
@@ -245,7 +245,6 @@ namespace PNTProyecto.Controllers
                 _context.Update(publicacion);
                 await _context.SaveChangesAsync();
 
-                // Obtener el contacto de la publicación
                 var contacto = publicacion.Contacto;
 
                 return Json(new { success = true, message = "Me Gusta toggled correctamente.", contacto });
@@ -256,6 +255,7 @@ namespace PNTProyecto.Controllers
                 return Json(new { success = false, message = "Error al guardar los cambios." });
             }
         }
+
 
         public class ToggleMeGustaRequest
         {

@@ -84,24 +84,34 @@
 @section Scripts {
     <script>
         async function toggleMeGusta(publicacionId) {
-            const response = await fetch('/Publicaciones/ToggleMeGusta', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ publicacionId })
-            });
+            try {
+                const response = await fetch('/Publicaciones/ToggleMeGusta', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ publicacionId })
+                });
 
-            if (response.ok) {
-                const data = await response.json();
-                alert(`La acción se ha completado con éxito.\nContacto: ${@Model.Contacto}`);
-            } else {
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success) {
+                        alert(`La acción se ha completado con éxito.\nContacto: ${data.contacto}`);
+                    } else {
+                        alert(`Hubo un error: ${data.message}`);
+                    }
+                } else {
+                    alert('Hubo un error al realizar la acción.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
                 alert('Hubo un error al realizar la acción.');
             }
         }
-
     </script>
 }
+
+
 
 <style>
     body {
