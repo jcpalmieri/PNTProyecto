@@ -65,7 +65,7 @@
     </header>
     <nav class="navbar">
         <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-area="" asp-controller="Publicaciones" asp-action="Index">Publicaciones</a>
+        <a asp-area="" asp-controller="Publicaciones" asp-action="Index">Todas Las Publicaciones</a>
         <div class="filter-bar">
             <select id="OpcionesDeUsuario" onchange="handleUserOptionsChange()">
                 <option value="">Opciones de Usuario</option>
@@ -93,7 +93,7 @@
                 } else if (userOptions.value === 'Crear Publicacion') {
                     window.location.href = '../Publicaciones/Create';
                 } else if (userOptions.value === 'perfil') {
-                window.location.href = '../Perfil/Index';
+                window.location.href = '/Perfil/Index';
                 }
             }
         </script>

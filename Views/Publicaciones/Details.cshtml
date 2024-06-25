@@ -48,13 +48,17 @@
 <div>
     @if (Model.UsuarioId == currentUserId)
     {
-        <ul>
-            <li><a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a></li>
-            <li><a asp-action="Delete" asp-route-id="@Model.nroPublicacion" onclick="return confirm('¿Estás seguro de que quieres borrar esta publicación?')">Borrar</a></li>
-        </ul>
+    <ul>
+        <li><a asp-action="Edit" asp-route-id="@Model.nroPublicacion">Editar</a></li>
+        <li>
+            <form asp-action="Delete" method="post" onsubmit="return confirm('¿Estás seguro de que quieres borrar esta publicación?');">
+                <input type="hidden" name="id" value="@Model.nroPublicacion" />
+                <button type="submit" class="btn-custom">Eliminar Publicación</button>
+            </form>
+        </li>
+    </ul>
     }
 </div>
-
 
 <div>
     @if (Model.UsuarioId != currentUserId)
@@ -162,6 +166,19 @@
             background-color: #0056b3; /* Color de fondo del botón al pasar el mouse */
         }
 
+    .btn-custom {
+        background-color: transparent;
+        border: none;
+        color: #4CAF50; /* Color del botón */
+        text-decoration: underline;
+        padding: 0;
+        cursor: pointer;
+    }
+
+        .btn-custom:hover {
+            color: #45a049; /* Color del botón al pasar el mouse */
+        }
+
     .text-danger {
         color: #ff6666; /* Color del texto de error */
     }
@@ -175,4 +192,3 @@
             color: #45a049; /* Color del enlace al pasar el mouse */
         }
 </style>
-
