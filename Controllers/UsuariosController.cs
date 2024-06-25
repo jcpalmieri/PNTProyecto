@@ -35,10 +35,14 @@ namespace PNTProyecto.Controllers
             {
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Redirigir al usuario a la vista de login con los datos insertados
+                return RedirectToAction("Login", "Account", new { email = usuario.Email, password = usuario.Password });
             }
             return View(usuario);
         }
+
+
 
         // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
