@@ -96,6 +96,9 @@
                     const data = await response.json();
                     if (data.success) {
                         alert(`La acción se ha completado con éxito.\nContacto: ${data.contacto}`);
+
+                        // Redireccionar al usuario al índice de publicaciones
+                        window.location.href = '/Publicaciones/Index';
                     } else {
                         alert(`Hubo un error: ${data.message}`);
                     }
@@ -109,6 +112,7 @@
         }
     </script>
 }
+
 
 
 

@@ -235,34 +235,40 @@ namespace PNTProyecto.Controllers
                 return Json(new { success = false, message = "Publicación no encontrada." });
             }
 
+            // Obtener lista de usuarios interesados
             var usuariosInteresados = string.IsNullOrEmpty(publicacion.UsuarioInteresado)
                 ? new List<string>()
                 : publicacion.UsuarioInteresado.Split(',').ToList();
 
-            if (usuariosInteresados.Contains(usuario.UsuarioId.ToString()))
+            // Verificar si el usuario ya está en la lista
+            var userIdString = usuario.UsuarioId.ToString();
+            var existeUsuario = usuariosInteresados.Contains(userIdString);
+
+            if (existeUsuario)
             {
-                usuariosInteresados.Remove(usuario.UsuarioId.ToString());
+                // Si ya existe, retornar éxito sin hacer cambios
+                var contacto = publicacion.Contacto;
+                return Json(new { success = true, message = "Ya te gusta esta publicación.", contacto });
             }
             else
             {
-                usuariosInteresados.Add(usuario.UsuarioId.ToString());
-            }
+                // Si no existe, agregarlo a la lista de usuarios interesados
+                usuariosInteresados.Add(userIdString);
+                publicacion.UsuarioInteresado = string.Join(",", usuariosInteresados);
 
-            publicacion.UsuarioInteresado = string.Join(",", usuariosInteresados);
+                try
+                {
+                    _context.Update(publicacion);
+                    await _context.SaveChangesAsync();
 
-            try
-            {
-                _context.Update(publicacion);
-                await _context.SaveChangesAsync();
-
-                var contacto = publicacion.Contacto;
-
-                return Json(new { success = true, message = "Me Gusta toggled correctamente.", contacto });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error al guardar los cambios.");
-                return Json(new { success = false, message = "Error al guardar los cambios." });
+                    var contacto = publicacion.Contacto;
+                    return Json(new { success = true, message = "Me Gusta toggled correctamente.", contacto });
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error al guardar los cambios.");
+                    return Json(new { success = false, message = "Error al guardar los cambios." });
+                }
             }
         }
 
