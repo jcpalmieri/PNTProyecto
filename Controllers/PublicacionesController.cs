@@ -244,7 +244,11 @@ namespace PNTProyecto.Controllers
             {
                 _context.Update(publicacion);
                 await _context.SaveChangesAsync();
-                return Json(new { success = true, message = "Me Gusta toggled correctamente." });
+
+                // Obtener el contacto de la publicación
+                var contacto = publicacion.Contacto;
+
+                return Json(new { success = true, message = "Me Gusta toggled correctamente.", contacto });
             }
             catch (Exception ex)
             {
@@ -257,5 +261,6 @@ namespace PNTProyecto.Controllers
         {
             public int PublicacionId { get; set; }
         }
+
     }
 }
