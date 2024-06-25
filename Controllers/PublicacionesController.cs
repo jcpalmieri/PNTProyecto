@@ -109,8 +109,6 @@ namespace PNTProyecto.Controllers
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
-
-        // POST: Publicaciones/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion)
@@ -129,8 +127,18 @@ namespace PNTProyecto.Controllers
 
                     if (usuario != null)
                     {
-                        publicacion.UsuarioId = usuario.UsuarioId;
-                        _context.Update(publicacion);
+                        // Obtener la entidad existente desde la base de datos
+                        var existingPublicacion = await _context.Publicaciones.FindAsync(id);
+
+                        // Copiar los valores editables desde el formulario a la entidad existente
+                        existingPublicacion.NombreMascota = publicacion.NombreMascota;
+                        existingPublicacion.Descripcion = publicacion.Descripcion;
+                        existingPublicacion.TipoMascota = publicacion.TipoMascota;
+                        existingPublicacion.Contacto = publicacion.Contacto;
+                        existingPublicacion.Imagen = publicacion.Imagen;
+
+                        // Guardar los cambios en la base de datos
+                        _context.Update(existingPublicacion);
                         await _context.SaveChangesAsync();
 
                         return RedirectToAction(nameof(Index));
@@ -156,6 +164,8 @@ namespace PNTProyecto.Controllers
             ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
             return View(publicacion);
         }
+
+
 
         // GET: Publicaciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
