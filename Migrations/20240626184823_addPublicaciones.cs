@@ -5,7 +5,7 @@
 namespace PNTProyecto.Migrations
 {
     /// <inheritdoc />
-    public partial class addPublicacion : Migration
+    public partial class addPublicaciones : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

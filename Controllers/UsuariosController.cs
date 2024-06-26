@@ -60,7 +60,6 @@ namespace PNTProyecto.Controllers
             return View(usuario);
         }
 
-        // POST: Usuarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,NombreUsuario,Email,Password,Telefono")] Usuario usuario)
@@ -74,9 +73,33 @@ namespace PNTProyecto.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
+                    // Obtener el usuario actual de la base de datos
+                    var existingUsuario = await _context.Usuarios.FindAsync(usuario.UsuarioId);
+
+                    if (existingUsuario == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Si se proporcionó una nueva contraseña, actualizarla
+                    if (!string.IsNullOrEmpty(usuario.Password))
+                    {
+                        // Aquí podrías aplicar hashing u otros métodos de seguridad antes de guardar
+                        existingUsuario.Password = usuario.Password;
+                    }
+
+                    // Actualizar los demás campos
+                    existingUsuario.NombreUsuario = usuario.NombreUsuario;
+                    existingUsuario.Email = usuario.Email;
+                    existingUsuario.Telefono = usuario.Telefono;
+
+                    // Guardar cambios
+                    _context.Update(existingUsuario);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Cambios guardados con éxito.";
+
+                    // Redirigir al inicio de sesión
+                    return RedirectToAction("Login", "Account", new { area = "", returnUrl = "" });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -89,8 +112,9 @@ namespace PNTProyecto.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index", "Perfil");
             }
+
+            // Si llegamos aquí, significa que hay errores de validación, así que retornamos la vista con el usuario
             return View(usuario);
         }
 
