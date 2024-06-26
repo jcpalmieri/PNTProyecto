@@ -44,7 +44,18 @@
         </dd>
     </dl>
 </div>
-
+<div>
+    @if (Model.UsuarioId == currentUserId)
+    {
+        <h4>Usuarios Interesados</h4>
+        <ul>
+            @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
+            {
+                <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
+            }
+        </ul>
+    }
+</div>
 <div>
     @if (Model.UsuarioId == currentUserId)
     {
@@ -67,18 +78,7 @@
     }
 </div>
 
-<div>
-    @if (Model.UsuarioId == currentUserId)
-    {
-    <h4>Usuarios Interesados</h4>
-    <ul>
-        @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
-            {
-        <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
-            }
-    </ul>
-    }
-</div>
+
 
 @section Scripts {
     <script>
