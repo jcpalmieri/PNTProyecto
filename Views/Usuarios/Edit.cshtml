@@ -10,9 +10,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" asp-controller="Usuarios" method="post">
             <div class="form-group">
-                <type ="hidden" asp-for="UsuarioId" />
+                <input type="hidden" asp-for="UsuarioId" />
                 <label asp-for="NombreUsuario" class="control-label"></label>
                 <input asp-for="NombreUsuario" class="form-control" />
                 <span asp-validation-for="NombreUsuario" class="text-danger"></span>
@@ -38,6 +38,9 @@
         </form>
     </div>
 </div>
+<div id="successMessage" class="alert alert-success" style="display:none;">
+    Cambios guardados con éxito.
+</div>
 
 <div id="Index1">
     <a asp-action="Index">Back to List</a>
@@ -45,18 +48,6 @@
 <div id="Index2">
     <a href="#" onclick="goBack()">Ir a perfil</a>
 </div>
-
-<script>
-    function goBack() {
-        var referrer = document.referrer;
-
-        if (referrer && referrer !== '') {
-            window.location.href = referrer;
-        } else {
-            window.location.href = '@Url.Action("Index", "Perfil")';
-        }
-    }
-</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -80,6 +71,37 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+    <script>
+        function goBack() {
+            var referrer = document.referrer;
+
+            if (referrer && referrer !== '') {
+                window.location.href = referrer;
+            } else {
+                window.location.href = '@Url.Action("Index", "Perfil")';
+            }
+        }
+    </script>
+    <script>
+        $('#editForm').submit(function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            var form = $(this);
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function () {
+                    $('#successMessage').fadeIn().delay(3000).fadeOut(function () {
+                        window.location.href = '/perfil/index'; // Redirige después de mostrar el mensaje
+                    });
+                },
+                error: function () {
+                    alert('Error al guardar cambios.'); // Manejo de errores si es necesario
+                }
+            });
+        });
+    </script>
 }
 
 <style>
@@ -87,3 +109,6 @@
         display: none;
     }
 </style>
+
+
+

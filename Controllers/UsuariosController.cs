@@ -76,6 +76,7 @@ namespace PNTProyecto.Controllers
                 {
                     _context.Update(usuario);
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Cambios guardados con éxito.";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -88,7 +89,7 @@ namespace PNTProyecto.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Perfil");
             }
             return View(usuario);
         }

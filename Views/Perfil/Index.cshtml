@@ -6,7 +6,12 @@
 <body>
     <div class="container">
         <h1>Perfil de Usuario</h1>
-
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successMessage" class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
         <div id="userDetails" class="user-details">
             <p>Cargando...</p>
         </div>
@@ -26,21 +31,23 @@
 
 
 
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const editButton = document.getElementById('editButton');
+ 
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const editButton = document.getElementById('editButton');
 
-            editButton.addEventListener('click', () => {
+                editButton.addEventListener('click', () => {
 
-                // Redirigir a la URL especificada
-                window.location.href = editLink.href
-            });     // Redirigir a la URL especificada
+                    // Redirigir a la URL especificada
+                    window.location.href = editLink.href
+                });     // Redirigir a la URL especificada
 
 
-        });
-    </script>
+            });
+       </script>
+    
+    
 
 
     <script>
@@ -81,7 +88,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             getUserDetails();
         });
+   
     </script>
+    
+
 </body>
 </html>
 
