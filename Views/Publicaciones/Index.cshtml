@@ -23,7 +23,7 @@
             <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.NombreMascota</h2>
                 <img src="@item.Imagen" alt="@item.NombreMascota" />
-                <p class="descripcion-publicacion">@item.Descripcion</p> 
+                <p class="descripcion-publicacion">@item.Descripcion</p>
                 <p>UsuarioCreadorId: @item.UsuarioId</p>
             </button>
         </div>
@@ -44,7 +44,7 @@
                 var tipoMascota = pub.classList[1];
 
                 if (filtro === '' || tipoMascota === 'tipo-' + filtro) { // Si el filtro esta vacio o coincide con el tipo de la publicacion.
-                    pub.style.display = 'block'; // Lo muestra
+                    pub.style.display = 'flex'; // Lo muestra (un pequeño cambio aca es que ahora hay un flex en ves de un block, encontre un bug que cuando se usa esta funcion deformaba las publicaciones cuando volvias a todas.)
                 } else {
                     pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
                 }
@@ -89,7 +89,7 @@
         padding: 16px;
         justify-content: center;
     }
-    /*Esto de abajo es el estilo de la publicacion (tamaño,fondo,color,tamaño de imagen,ancho de la publicacion etc)*/
+
     .publicacion-card {
         background-color: #333;
         padding: 16px;
@@ -97,13 +97,11 @@
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s;
-        max-width: 300px;
-        width: 100%;
+        width: 300px; /* Ancho fijo para todas las tarjetas */
         height: 450px; /* Altura fija */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 300px; /* Ancho fijo para todas las tarjetas */
     }
 
         .publicacion-card:hover {
@@ -114,19 +112,20 @@
             color: #4CAF50;
             margin-bottom: 10px;
         }
-        /*IMAGENES MODIFICADAS*/
+
         .publicacion-card img {
             max-width: 100%;
             height: 250px; /*altura fija de las imagenes */
-            object-fit: cover; /* esto seria para que las imagenes no se distorcionen. */
+            object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
             border-radius: 8px;
         }
-        /*Esto es el color de las letras de cada publicacion*/
+        /*Color de la descripcion.*/
         .publicacion-card p {
             color: #000;
             margin-top: 10px;
         }
-       .descripcion-publicacion {
+
+    .descripcion-publicacion {
         font-size: 25px; /* Tamaño de la descripcion mas grande.*/
-        }
+    }
 </style>
