@@ -25,6 +25,31 @@
                 <img src="@item.Imagen" alt="@item.NombreMascota" />
                 <p class="descripcion-publicacion">@item.Descripcion</p>
                 <p>UsuarioCreadorId: @item.UsuarioId</p>
+                <td>
+                    <i class="fas fa-heart"></i> @item.CantidadUsuariosInteresados
+                </td>
+                <p>
+                    @if (item.TipoMascota.ToLower() == "gato")
+                    {
+                        <i class="fas fa-cat"></i>
+                    }
+                    else if (item.TipoMascota.ToLower() == "perro")
+                    {
+                        <i class="fas fa-dog"></i>
+                    }
+                    else if (item.TipoMascota.ToLower() == "ave")
+                    {
+                        <i class="fas fa-dove"></i>
+                    }
+                    else if (item.TipoMascota.ToLower() == "roedor")
+                    {
+                        <i class="fas fa-rat"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-fish"></i> 
+                    }
+                </p>
             </button>
         </div>
     }

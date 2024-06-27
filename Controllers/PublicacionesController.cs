@@ -26,7 +26,34 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Publicaciones.ToListAsync());
+            var publicaciones = await _context.Publicaciones
+                                         .ToListAsync();
+
+            // Calculamos la cantidad de usuarios interesados para cada publicación y 
+            //luego listamos de acuerdo al orden de interesados
+            var publicacionesConConteo = publicaciones.Select(p => new
+            {
+                Publicacion = p,
+                CantidadUsuariosInteresados = ContarUsuariosInteresados(p.UsuarioInteresado)
+            })
+            .OrderByDescending(p => p.CantidadUsuariosInteresados)
+            .Select(p => p.Publicacion)
+            .ToList();
+
+            return View(publicacionesConConteo);
+
+        }
+
+        private int ContarUsuariosInteresados(string usuariosInteresados)
+        {
+            if (string.IsNullOrEmpty(usuariosInteresados))
+            {
+                return 0;
+            }
+
+            // separamos ids por comas
+            var ids = usuariosInteresados.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return ids.Length;
         }
 
         public async Task<IActionResult> MisPublicaciones(int usuarioId)
@@ -36,7 +63,7 @@ namespace PNTProyecto.Controllers
                 .ToListAsync();
             return View("Index", publicaciones);
         }
-
+     
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,7 +78,6 @@ namespace PNTProyecto.Controllers
             {
                 return NotFound();
             }
-
             ViewBag.UserId = HttpContext.Session.GetInt32("UserId");
 
             return View(publicacion);
@@ -60,7 +86,9 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones/Create
         public IActionResult Create()
         {
-            ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
+            //   ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
+            var tiposMascotas = ObtenerTiposMascotas(); // Obtener lista de tipos de mascotas
+            ViewBag.TipoMascotas = new SelectList(tiposMascotas, "Value", "Text");
             return View();
         }
 
@@ -86,9 +114,25 @@ namespace PNTProyecto.Controllers
                     ModelState.AddModelError("", "Usuario no encontrado.");
                 }
             }
+            var tiposMascotas = ObtenerTiposMascotas(); // Obtener lista de tipos de mascotas
+            ViewBag.TipoMascotas = new SelectList(tiposMascotas, "Value", "Text");
 
-            ViewBag.TipoMascotas = new SelectList(new List<string> { "Perro", "Gato", "Ave", "Otro" });
             return View(publicacion);
+            //ViewBag.TipoMascotas = new SelectList(new List<string> { "Perro", "Gato", "Ave", "Otro" });
+            //return View(publicacion);
+        }
+        private List<SelectListItem> ObtenerTiposMascotas()
+        {
+            // Implementación para obtener tipos de mascotas desde algún servicio o repositorio
+            return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Perro", Text = "Perro" },
+            new SelectListItem { Value = "Gato", Text = "Gato" },
+            new SelectListItem { Value = "Pez", Text = "Pez" },
+            new SelectListItem { Value = "Roedor", Text = "Roedor" },
+            new SelectListItem { Value = "Ave", Text = "Ave" }
+
+        };
         }
 
         // GET: Publicaciones/Edit/5
