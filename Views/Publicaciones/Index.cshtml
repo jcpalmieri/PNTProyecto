@@ -1,65 +1,65 @@
 @model IEnumerable<PNTProyecto.Models.Publicacion>
 
-    @{
+@{
     ViewData["Title"] = "Publicaciones";
-    }
-    <div class="filter-bar-container">
-        <div class="filter-bar"> 
-            <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
-                <option value="">Todas las publicaciones</option> 
-                <option value="perro">Perro</option>
-                <option value="gato">Gato</option>
-                <option value="ave">Ave</option>
-                <option value="pez">Pez</option>
-                <option value="roedor">Roedor</option>
-            </select>
-        </div>
+}
+<div class="filter-bar-container">
+    <div class="filter-bar">
+        <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
+            <option value="">Todas las publicaciones</option>
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+            <option value="ave">Ave</option>
+            <option value="pez">Pez</option>
+            <option value="roedor">Roedor</option>
+        </select>
     </div>
+</div>
 
-    <div class="publicaciones-grid">
-        @foreach (var item in Model)
+<div class="publicaciones-grid">
+    @foreach (var item in Model)
     {
         <div class="publicacion-card tipo-@item.TipoMascota.ToLower()">
-                <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
-                    <h2>@item.NombreMascota</h2>
-                    <img src="@item.Imagen" alt="@item.NombreMascota" style="max-width: 100%;" />
-                    <p>@item.Descripcion</p>
-                    <p>Usuario ID: @item.UsuarioId</p>
-                </button>
+            <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
+                <h2>@item.NombreMascota</h2>
+                <img src="@item.Imagen" alt="@item.NombreMascota" />
+                <p class="descripcion-publicacion">@item.Descripcion</p> 
+                <p>UsuarioCreadorId: @item.UsuarioId</p>
+            </button>
         </div>
     }
-    </div>
+</div>
 
-    @section Scripts {
+@section Scripts {
+    <script>
+        function redirectToDetails(nroPublicacion) {
+            window.location.href = '/Publicaciones/Details/' + nroPublicacion; // te redirige al detail de x publicacion.
+        }
 
-        <script>
-            function redirectToDetails(nroPublicacion) {
-                window.location.href = '/Publicaciones/Details/' + nroPublicacion; // te redirige al detail de x publicacion.
-            }
+        function filtrarPublicaciones() {
+            var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase(); // Obtiene la opcion del filtro seleccionada, ej "Perro"
+            var publicaciones = document.querySelectorAll('.publicacion-card'); // selecciona todas las publicaciones
 
-            function filtrarPublicaciones() {
-                var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase();// Obtiene la opcion del filtro seleccionada, ej "Perro"
-                var publicaciones = document.querySelectorAll('.publicacion-card'); // selecciona todas las publicaciones
+            publicaciones.forEach(function (pub) { // recorre toda la lista
+                var tipoMascota = pub.classList[1];
 
-                publicaciones.forEach(function (pub) { // recorre toda la lista
-                    var tipoMascota = pub.classList[1]; 
+                if (filtro === '' || tipoMascota === 'tipo-' + filtro) { // Si el filtro esta vacio o coincide con el tipo de la publicacion.
+                    pub.style.display = 'block'; // Lo muestra
+                } else {
+                    pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
+                }
+            });
+        }
+    </script>
+}
 
-                    if (filtro === '' || tipoMascota === 'tipo-' + filtro) { // Si el filtro esta vacio o coincide con el tipo de la publicacion.
-                        pub.style.display = 'block'; // Lo muestra
-                    } else {
-                        pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
-                    }
-                });
-            }
-        </script>
-    }
 <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #1a1a1a; /* Color de fondo oscuro */
-        color: #eee; /* Color de texto claro */
+        background-color: #1a1a1a;
+        color: #eee;
     }
 
     .filter-bar-container {
@@ -76,8 +76,8 @@
         .filter-bar select {
             padding: 8px;
             font-size: 16px;
-            background-color: #444; /* Color de fondo del selector */
-            color: #eee; /* Color de texto claro */
+            background-color: #444;
+            color: #eee;
             border: none;
             border-radius: 4px;
         }
@@ -89,9 +89,9 @@
         padding: 16px;
         justify-content: center;
     }
-
+    /*Esto de abajo es el estilo de la publicacion (tamaño,fondo,color,tamaño de imagen,ancho de la publicacion etc)*/
     .publicacion-card {
-        background-color: #333; /* Color de fondo de las tarjetas */
+        background-color: #333;
         padding: 16px;
         border-radius: 8px;
         text-align: center;
@@ -99,28 +99,34 @@
         transition: transform 0.2s;
         max-width: 300px;
         width: 100%;
-        margin-bottom: 16px;
+        height: 450px; /* Altura fija */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px; /* Ancho fijo para todas las tarjetas */
     }
 
         .publicacion-card:hover {
-            transform: scale(1.03); /* Aumenta un poco la tarjeta al pasar el mouse */
+            transform: scale(1.03);
         }
 
         .publicacion-card h2 {
-            color: #4CAF50; /* Color del título */
+            color: #4CAF50;
             margin-bottom: 10px;
         }
-
+        /*IMAGENES MODIFICADAS*/
         .publicacion-card img {
             max-width: 100%;
-            height: auto;
+            height: 250px; /*altura fija de las imagenes */
+            object-fit: cover; /* esto seria para que las imagenes no se distorcionen. */
             border-radius: 8px;
         }
-
+        /*Esto es el color de las letras de cada publicacion*/
         .publicacion-card p {
-            color: #ccc; /* Color del texto en la tarjeta */
-            margin-top: 8px;
+            color: #000;
+            margin-top: 10px;
+        }
+       .descripcion-publicacion {
+        font-size: 25px; /* Tamaño de la descripcion mas grande.*/
         }
 </style>
-
-
