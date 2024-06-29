@@ -4,111 +4,176 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" asp-controller="Usuarios" method="post">
-            <div class="form-group">
-                <input type="hidden" asp-for="UsuarioId" />
-                <label asp-for="NombreUsuario" class="control-label"></label>
-                <input asp-for="NombreUsuario" class="form-control" />
-                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group" id="emailFormGroup">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group" id="telefonoFormGroup">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-<div id="successMessage" class="alert alert-success" style="display:none;">
-    Cambios guardados con éxito.
-</div>
-
-<div id="Index1">
-    <a asp-action="Index">Back to List</a>
-</div>
-<div id="Index2">
-    <a href="#" onclick="goBack()">Ir a perfil</a>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const referrerURL = '/Perfil/';
-
-        if (document.referrer.includes(referrerURL)) {
-            document.getElementById('emailFormGroup').classList.add('hidden');
-            document.getElementById('telefonoFormGroup').classList.add('hidden');
-            document.getElementById('Index1').classList.add('hidden');
-
-        } else {
-            document.getElementById('Index2').classList.add('hidden');
-
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #eee;
+            margin: 0;
+            padding: 0;
         }
-    });
-</script>
 
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+        h1 {
+            color: #4CAF50;
+        }
 
-    <script>
-        function goBack() {
-            var referrer = document.referrer;
+        form {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
 
-            if (referrer && referrer !== '') {
-                window.location.href = referrer;
-            } else {
-                window.location.href = '@Url.Action("Index", "Perfil")';
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .btn-primary:hover {
+                background-color: #45a049;
             }
-        }
-    </script>
-    <script>
-        $('#editForm').submit(function (event) {
-            event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
-            var form = $(this);
-            $.ajax({
-                type: form.attr('method'),
-                url: form.attr('action'),
-                data: form.serialize(),
-                success: function () {
-                    $('#successMessage').fadeIn().delay(3000).fadeOut(function () {
-                        window.location.href = '/perfil/index'; // Redirige después de mostrar el mensaje
-                    });
-                },
-                error: function () {
-                    alert('Error al guardar cambios.'); // Manejo de errores si es necesario
+        .text-danger {
+            color: #f44336;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit</h1>
+
+        <h4>Usuario</h4>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit" asp-controller="Usuarios" method="post" id="editForm">
+                    <div class="form-group">
+                        <input type="hidden" asp-for="UsuarioId" />
+                        <label asp-for="NombreUsuario" class="control-label"></label>
+                        <input asp-for="NombreUsuario" class="form-control" />
+                        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="emailFormGroup">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="telefonoFormGroup">
+                        <label asp-for="Telefono" class="control-label"></label>
+                        <input asp-for="Telefono" class="form-control" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="successMessage" class="alert alert-success" style="display:none;">
+            Cambios guardados con éxito.
+        </div>
+
+        <div id="Index1">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const referrerURL = '/Perfil/';
+
+                if (document.referrer.includes(referrerURL)) {
+                    document.getElementById('emailFormGroup').classList.add('hidden');
+                    document.getElementById('telefonoFormGroup').classList.add('hidden');
+                    document.getElementById('Index1').classList.add('hidden');
+                } else {
+                    document.getElementById('Index2').classList.add('hidden');
                 }
             });
-        });
-    </script>
-}
 
-<style>
-    .hidden {
-        display: none;
+            function goBack() {
+                var referrer = document.referrer;
+
+                if (referrer && referrer !== '') {
+                    window.location.href = referrer;
+                } else {
+                    window.location.href = '@Url.Action("Index", "Perfil")';
+                }
+            }
+
+            $('#editForm').submit(function (event) {
+                event.preventDefault();
+
+                var form = $(this);
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function () {
+                        $('#successMessage').fadeIn().delay(3000).fadeOut(function () {
+                            window.location.href = '/perfil/index';
+                        });
+                    },
+                    error: function () {
+                        alert('Error al guardar cambios.');
+                    }
+                });
+            });
+        </script>
     }
-</style>
-
-
-
+</body>
+</html>

@@ -33,15 +33,38 @@
         }
 
             .navbar a {
-                color: white;
+                color: green; /* Cambia el color del texto a verde */
                 text-decoration: none;
                 padding: 10px 20px;
+                font-size: 18px; /* Aumenta el tamaño del texto */
             }
 
                 .navbar a:hover {
                     background-color: #ddd;
                     color: black;
                 }
+
+        .filter-bar {
+            /* Alineación y estilo para el menú desplegable */
+            display: flex;
+            align-items: center;
+        }
+
+        #OpcionesDeUsuario {
+            /* Estilos para el menú desplegable */
+            background-color: transparent;
+            color: green;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+            #OpcionesDeUsuario option {
+                /* Estilos para las opciones dentro del menú desplegable */
+                background-color: #333;
+                color: white;
+            }
 
         .container {
             margin: 0 auto;
@@ -89,7 +112,7 @@
             function handleUserOptionsChange() {
                 var userOptions = document.getElementById('OpcionesDeUsuario');
                 if (userOptions.value === 'registrarse') {
-                    window.location.href = '../Usuarios/Create';   // Te redirge a x direccion.
+                    window.location.href = '../Usuarios/Create';
                 } else if (userOptions.value === 'Login') {
                     window.location.href = '../Account/Login';
                 } else if (userOptions.value === 'Crear Publicacion') {

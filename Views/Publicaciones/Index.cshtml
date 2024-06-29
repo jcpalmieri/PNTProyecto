@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Publicaciones";
 }
+
 <div class="filter-bar-container">
     <div class="filter-bar">
         <select id="FiltroDeBusqueda" onchange="filtrarPublicaciones()">
@@ -23,7 +24,7 @@
             <button type="button" class="publicacion-button" onclick="redirectToDetails('@item.nroPublicacion')">
                 <h2>@item.NombreMascota</h2>
                 <img src="@item.Imagen" alt="@item.NombreMascota" />
-                <p class="descripcion-publicacion">@item.Descripcion</p>
+                <p class="descripcion-publicacion">@Truncate(item.Descripcion, 100)</p> <!-- esto limita la descripcion a los primeros 100 caracteres, para que no se deformen o sean una distinta a otra. -->
                 <p>UsuarioCreadorId: @item.UsuarioId</p>
                 <td>
                     <i class="fas fa-heart"></i> @item.CantidadUsuariosInteresados
@@ -47,7 +48,7 @@
                     }
                     else
                     {
-                        <i class="fas fa-fish"></i> 
+                        <i class="fas fa-fish"></i>
                     }
                 </p>
             </button>
@@ -58,24 +59,34 @@
 @section Scripts {
     <script>
         function redirectToDetails(nroPublicacion) {
-            window.location.href = '/Publicaciones/Details/' + nroPublicacion; // te redirige al detail de x publicacion.
+            window.location.href = '/Publicaciones/Details/' + nroPublicacion;
         }
 
         function filtrarPublicaciones() {
-            var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase(); // Obtiene la opcion del filtro seleccionada, ej "Perro"
-            var publicaciones = document.querySelectorAll('.publicacion-card'); // selecciona todas las publicaciones
+            var filtro = document.getElementById('FiltroDeBusqueda').value.toLowerCase();
+            var publicaciones = document.querySelectorAll('.publicacion-card');
 
-            publicaciones.forEach(function (pub) { // recorre toda la lista
+            publicaciones.forEach(function (pub) {
                 var tipoMascota = pub.classList[1];
 
-                if (filtro === '' || tipoMascota === 'tipo-' + filtro) { // Si el filtro esta vacio o coincide con el tipo de la publicacion.
-                    pub.style.display = 'flex'; // Lo muestra (un pequeño cambio aca es que ahora hay un flex en ves de un block, encontre un bug que cuando se usa esta funcion deformaba las publicaciones cuando volvias a todas.)
+                if (filtro === '' || tipoMascota === 'tipo-' + filtro) {
+                    pub.style.display = 'flex';
                 } else {
-                    pub.style.display = 'none'; // Oculta la publicación si no coincide con el filtro
+                    pub.style.display = 'none';
                 }
             });
         }
     </script>
+}
+
+@functions {
+    public string Truncate(string input, int length)
+    {
+        if (input.Length <= length)
+            return input;
+        else
+            return input.Substring(0, length) + "...";
+    }
 }
 
 <style>
@@ -84,7 +95,7 @@
         margin: 0;
         padding: 0;
         background-color: #1a1a1a;
-        color: #eee;
+        color: #eee; /* color del texto en general */
     }
 
     .filter-bar-container {
@@ -123,10 +134,10 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s;
         width: 300px; /* Ancho fijo para todas las tarjetas */
-        height: 450px; /* Altura fija */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow: hidden; /* Oculta cualquier contenido que desborde */
     }
 
         .publicacion-card:hover {
@@ -140,17 +151,20 @@
 
         .publicacion-card img {
             max-width: 100%;
-            height: 250px; /*altura fija de las imagenes */
+            height: 250px; /* Altura fija para las imágenes */
             object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
             border-radius: 8px;
         }
-        /*Color de la descripcion.*/
+
         .publicacion-card p {
-            color: #000;
+            color: #000; /* Color del texto a negro */
             margin-top: 10px;
+            overflow: hidden; /* Oculta cualquier desbordamiento */
+            text-overflow: ellipsis; /* Añade puntos suspensivos al final del texto cuando se corta */
+            white-space: nowrap; /* Evita que el texto se rompa */
         }
 
     .descripcion-publicacion {
-        font-size: 25px; /* Tamaño de la descripcion mas grande.*/
+        font-size: 18px; /* Tamaño de la descripción */
     }
 </style>
