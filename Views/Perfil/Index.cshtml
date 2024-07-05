@@ -8,9 +8,9 @@
         <h1>Perfil de Usuario</h1>
         @if (TempData["SuccessMessage"] != null)
         {
-            <div id="successMessage" class="alert alert-success">
-                @TempData["SuccessMessage"]
-            </div>
+        <div id="successMessage" class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
         }
         <div id="userDetails" class="user-details">
             <p>Cargando...</p>
@@ -50,11 +50,12 @@
 
                     const userDetailsDiv = document.getElementById('userDetails');
                     userDetailsDiv.innerHTML = `
-                                    <p><strong>Nombre de usuario:</strong> ${identifier}</p>
-                                    <p><strong>Email:</strong> ${data.email}</p>
-                                    <p><strong>Telefono:</strong> ${data.telefono}</p>
-                                    <p><strong>UsuarioId:</strong> ${data.usuarioId}</p>
-                                `;
+                        ${data.imagenPerfil ? `<img src="${data.imagenPerfil}" alt="Imagen de Perfil" class="profile-image" />` : ''}
+                        <p><strong>Nombre de usuario:</strong> ${identifier}</p>
+                        <p><strong>Email:</strong> ${data.email}</p>
+                        <p><strong>Telefono:</strong> ${data.telefono}</p>
+                        <p><strong>UsuarioId:</strong> ${data.usuarioId}</p>
+                    `;
 
                     const usuarioIdInput = document.getElementById('usuarioIdInput');
                     usuarioIdInput.value = data.usuarioId;
@@ -133,4 +134,21 @@
         button:hover {
             background-color: #45a049;
         }
+
+    .profile-image {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .alert-success {
+        color: #4CAF50;
+        background-color: #1a1a1a;
+        border: 1px solid #4CAF50;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
 </style>

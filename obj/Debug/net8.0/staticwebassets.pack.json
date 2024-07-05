@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\images\\Paquito.jpg"
     },
     {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg",
+      "PackagePath": "staticwebassets\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg"
+    },
+    {
       "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_715b52d4-787e-40a1-b022-64d21c0f9b86.jpg",
       "PackagePath": "staticwebassets\\images\\font_715b52d4-787e-40a1-b022-64d21c0f9b86.jpg"
     },
@@ -287,6 +291,10 @@
     {
       "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg",
+      "PackagePath": "staticwebassets\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PNTProyecto.Microsoft.AspNetCore.StaticWebAssets.props",

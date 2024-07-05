@@ -2,16 +2,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PNTProyecto.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace PNTProyecto.Controllers
 {
     public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;  // Agrega esta línea
 
-        public UsuariosController(ApplicationDbContext context)
+        public UsuariosController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;  // Agrega esta línea
+
         }
 
         // GET: Usuarios
@@ -29,10 +33,28 @@ namespace PNTProyecto.Controllers
         // POST: Usuarios/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsuarioId,NombreUsuario,Email,Password,Telefono")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("UsuarioId,NombreUsuario,Email,Password,Telefono,ImagenPerfilFile")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
+                if (usuario.ImagenPerfilFile != null && usuario.ImagenPerfilFile.Length > 0)
+                {
+                    var extension = Path.GetExtension(usuario.ImagenPerfilFile.FileName).ToLower();
+                    if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                    {
+                        var fileName = Path.GetFileNameWithoutExtension(usuario.ImagenPerfilFile.FileName);
+                        var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+                        var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "profile_images", uniqueFileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await usuario.ImagenPerfilFile.CopyToAsync(stream);
+                        }
+
+                        usuario.ImagenPerfil = $"/profile_images/{uniqueFileName}";
+                    }
+                }
+
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
 
@@ -60,9 +82,10 @@ namespace PNTProyecto.Controllers
             return View(usuario);
         }
 
+        // POST: Usuarios/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,NombreUsuario,Email,Password,Telefono")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,NombreUsuario,Email,Password,Telefono,ImagenPerfilFile")] Usuario usuario)
         {
             if (id != usuario.UsuarioId)
             {
@@ -73,32 +96,43 @@ namespace PNTProyecto.Controllers
             {
                 try
                 {
-                    // Obtener el usuario actual de la base de datos
                     var existingUsuario = await _context.Usuarios.FindAsync(usuario.UsuarioId);
-
                     if (existingUsuario == null)
                     {
                         return NotFound();
                     }
 
-                    // Si se proporcionó una nueva contraseña, actualizarla
-                    if (!string.IsNullOrEmpty(usuario.Password))
+                    if (usuario.ImagenPerfilFile != null && usuario.ImagenPerfilFile.Length > 0)
                     {
-                        // Aquí podrías aplicar hashing u otros métodos de seguridad antes de guardar
-                        existingUsuario.Password = usuario.Password;
+                        var extension = Path.GetExtension(usuario.ImagenPerfilFile.FileName).ToLower();
+                        if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                        {
+                            var fileName = Path.GetFileNameWithoutExtension(usuario.ImagenPerfilFile.FileName);
+                            var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+                            var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "profile_images", uniqueFileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await usuario.ImagenPerfilFile.CopyToAsync(stream);
+                            }
+
+                            existingUsuario.ImagenPerfil = $"/profile_images/{uniqueFileName}";
+                        }
                     }
 
-                    // Actualizar los demás campos
                     existingUsuario.NombreUsuario = usuario.NombreUsuario;
                     existingUsuario.Email = usuario.Email;
                     existingUsuario.Telefono = usuario.Telefono;
 
-                    // Guardar cambios
+                    if (!string.IsNullOrEmpty(usuario.Password))
+                    {
+                        existingUsuario.Password = usuario.Password;
+                    }
+
                     _context.Update(existingUsuario);
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = "Cambios guardados con éxito.";
 
-                    // Redirigir al inicio de sesión
+                    TempData["SuccessMessage"] = "Cambios guardados con éxito.";
                     return RedirectToAction("Login", "Account", new { area = "", returnUrl = "" });
                 }
                 catch (DbUpdateConcurrencyException)
@@ -113,8 +147,6 @@ namespace PNTProyecto.Controllers
                     }
                 }
             }
-
-            // Si llegamos aquí, significa que hay errores de validación, así que retornamos la vista con el usuario
             return View(usuario);
         }
 

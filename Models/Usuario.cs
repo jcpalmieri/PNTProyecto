@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace PNTProyecto.Models
 {
@@ -18,5 +20,10 @@ namespace PNTProyecto.Models
 
         [Required]
         public string Telefono { get; set; }
+
+        public string? ImagenPerfil { get; set; }  // Campo para la ruta de la imagen de perfil
+
+        [NotMapped]
+        public IFormFile ImagenPerfilFile { get; set; }  // Campo para la subida de la imagen de perfil
     }
 }

@@ -4,50 +4,122 @@
     ViewData["Title"] = "Index";
     }
 
-    <h1>Index</h1>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="~/css/site.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #1a1a1a;
+                color: #eee;
+                margin: 0;
+                padding: 0;
+            }
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.NombreUsuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Password)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreUsuario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefono)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
-                </td>
-            </tr>
-}
-        </tbody>
-    </table>
+            .container {
+                width: 80%;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            h1 {
+                color: #4CAF50;
+            }
+
+            a {
+                color: #4CAF50;
+                margin-right: 10px;
+            }
+
+                a:hover {
+                    text-decoration: none;
+                    color: #45a049;
+                }
+
+            .table {
+                width: 100%;
+                margin-top: 20px;
+                border-collapse: collapse;
+            }
+
+                .table th, .table td {
+                    border: 1px solid #444;
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                .table th {
+                    background-color: #333;
+                    color: #eee;
+                }
+
+                .table tr:nth-child(even) {
+                    background-color: #2a2a2a;
+                }
+
+                .table tr:nth-child(odd) {
+                    background-color: #1a1a1a;
+                }
+
+            img {
+                max-width: 50px;
+                max-height: 50px;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>@ViewData["Title"]</h1>
+
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Imagen de Perfil</th>
+                        <th>@Html.DisplayNameFor(model => model.NombreUsuario)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.Password)</th>
+                        <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImagenPerfil))
+                            {
+                            <img src="@item.ImagenPerfil" alt="Imagen de Perfil" />
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreUsuario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Password)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

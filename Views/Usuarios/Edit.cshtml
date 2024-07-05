@@ -10,7 +10,6 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css">
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,13 +29,6 @@
             color: #4CAF50;
         }
 
-        form {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
         .form-group {
             margin-bottom: 20px;
         }
@@ -48,7 +40,8 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="file"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -75,8 +68,12 @@
             color: #f44336;
         }
 
-        .hidden {
-            display: none;
+        .profile-image {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
         }
     </style>
 </head>
@@ -87,93 +84,53 @@
         <h4>Usuario</h4>
         <hr />
 
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="Edit" asp-controller="Usuarios" method="post" id="editForm">
-                    <div class="form-group">
-                        <input type="hidden" asp-for="UsuarioId" />
-                        <label asp-for="NombreUsuario" class="control-label"></label>
-                        <input asp-for="NombreUsuario" class="form-control" />
-                        <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" id="emailFormGroup">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" id="telefonoFormGroup">
-                        <label asp-for="Telefono" class="control-label"></label>
-                        <input asp-for="Telefono" class="form-control" />
-                        <span asp-validation-for="Telefono" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
+        @using (Html.BeginForm("Edit", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.UsuarioId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreUsuario)
+            @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
         </div>
 
-        <div id="successMessage" class="alert alert-success" style="display:none;">
-            Cambios guardados con éxito.
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
 
-        <div id="Index1">
-            <a asp-action="Index">Back to List</a>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefono)
+            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Imagen de Perfil Actual")
+            @if (!string.IsNullOrEmpty(Model.ImagenPerfil))
+                {
+            <img src="@Model.ImagenPerfil" alt="Imagen de Perfil" class="profile-image" />
+                }
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagenPerfilFile, "Cambiar Imagen de Perfil")
+            <input type="file" name="ImagenPerfilFile" class="form-control" accept=".jpg, .jpeg, .png" />
+            @Html.ValidationMessageFor(model => model.ImagenPerfilFile, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Guardar" class="btn btn-primary" />
+        </div>
         }
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const referrerURL = '/Perfil/';
-
-                if (document.referrer.includes(referrerURL)) {
-                    document.getElementById('emailFormGroup').classList.add('hidden');
-                    document.getElementById('telefonoFormGroup').classList.add('hidden');
-                    document.getElementById('Index1').classList.add('hidden');
-                } else {
-                    document.getElementById('Index2').classList.add('hidden');
-                }
-            });
-
-            function goBack() {
-                var referrer = document.referrer;
-
-                if (referrer && referrer !== '') {
-                    window.location.href = referrer;
-                } else {
-                    window.location.href = '@Url.Action("Index", "Perfil")';
-                }
-            }
-
-            $('#editForm').submit(function (event) {
-                event.preventDefault();
-
-                var form = $(this);
-                $.ajax({
-                    type: form.attr('method'),
-                    url: form.attr('action'),
-                    data: form.serialize(),
-                    success: function () {
-                        $('#successMessage').fadeIn().delay(3000).fadeOut(function () {
-                            window.location.href = '/perfil/index';
-                        });
-                    },
-                    error: function () {
-                        alert('Error al guardar cambios.');
-                    }
-                });
-            });
-        </script>
-    }
+    </div>
 </body>
 </html>

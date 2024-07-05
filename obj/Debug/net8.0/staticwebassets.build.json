@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hQmjABl+AEznhIn6xg9m5sTkPz16om+dnMPxHeGUu9A=",
+  "Hash": "uqbGfJGBW/HMADmECeG7Ob0Bi7g7pMOCL/x9loKaxW8=",
   "Source": "PNTProyecto",
   "BasePath": "_content/PNTProyecto",
   "Mode": "Default",
@@ -186,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Fito.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg",
+      "SourceId": "PNTProyecto",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\",
+      "BasePath": "_content/PNTProyecto",
+      "RelativePath": "images/font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg"
     },
     {
       "Identity": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_715b52d4-787e-40a1-b022-64d21c0f9b86.jpg",
@@ -1402,6 +1421,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg",
+      "SourceId": "PNTProyecto",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\",
+      "BasePath": "_content/PNTProyecto",
+      "RelativePath": "profile_images/font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg"
     }
   ]
 }
