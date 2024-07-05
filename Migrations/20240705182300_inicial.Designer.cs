@@ -11,8 +11,8 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240626184811_addUsuario")]
-    partial class addUsuario
+    [Migration("20240705182300_inicial")]
+    partial class inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,9 @@ namespace PNTProyecto.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagenPerfil")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreUsuario")

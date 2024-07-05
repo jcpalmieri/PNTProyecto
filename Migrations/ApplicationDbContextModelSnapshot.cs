@@ -72,6 +72,9 @@ namespace PNTProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagenPerfil")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NombreUsuario")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

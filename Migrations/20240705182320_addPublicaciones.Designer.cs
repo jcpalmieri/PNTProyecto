@@ -11,7 +11,7 @@ using PNTProyecto.Models;
 namespace PNTProyecto.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240626184823_addPublicaciones")]
+    [Migration("20240705182320_addPublicaciones")]
     partial class addPublicaciones
     {
         /// <inheritdoc />
@@ -73,6 +73,9 @@ namespace PNTProyecto.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagenPerfil")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreUsuario")

@@ -50,7 +50,7 @@
         input[type="email"],
         textarea,
         select {
-            width: 100%;
+            width: calc(100% - 22px); /* Ajusta el ancho aquí */
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -74,6 +74,22 @@
         .text-danger {
             color: #f44336;
         }
+
+        .form-row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+            .form-row .col-md-6 {
+                width: 50%;
+                padding-right: 15px;
+            }
+
+        .preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +100,7 @@
         <hr />
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8">
                 @using (Html.BeginForm("Create", "Publicaciones", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                 @Html.AntiForgeryToken()
@@ -100,18 +116,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ImagenFile, "Subir Imagen", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <input type="file" id="ImagenFile" name="ImagenFile" class="form-control" accept=".jpg, .jpeg" />
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.ImagenFile, "Subir Imagen", new { @class = "control-label" })
+                            <input type="file" id="ImagenFile" name="ImagenFile" class="form-control" accept=".jpg, .jpeg" onchange="previewImage(event)" />
                             @Html.ValidationMessageFor(model => model.ImagenFile, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-6 preview">
+                            <img id="imagePreview" src="#" alt="Vista previa de la imagen" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.TextAreaFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextAreaFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", style = "height: 150px;" } })
                             @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -141,12 +161,19 @@
                 }
             </div>
         </div>
-
-        @section Scripts {
-            @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-            }
-        }
+        
     </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>

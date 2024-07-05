@@ -1,7 +1,7 @@
 @model PNTProyecto.Models.Usuario
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Usuario";
 }
 
 <!DOCTYPE html>
@@ -48,8 +48,12 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
-            width: 100%;
+        input[type="password"],
+        input[type="tel"],
+        input[type="file"],
+        textarea,
+        select {
+            width: calc(100% - 22px); /* Ajusta el ancho aquí */
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -64,7 +68,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
         }
 
             .btn-primary:hover {
@@ -74,54 +77,100 @@
         .text-danger {
             color: #f44336;
         }
+
+        .form-row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+            .form-row .col-md-6 {
+                width: 50%;
+                padding-right: 15px;
+            }
+
+        .preview {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+            .preview img {
+                max-width: 100px;
+                max-height: 100px;
+                border-radius: 8px;
+                margin-right: 10px;
+            }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Create</h1>
+        <h1>Crear Usuario</h1>
 
         <h4>Usuario</h4>
         <hr />
-
         <div class="row">
             <div class="col-md-4">
-                <form asp-action="Create">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="form-group">
                         <label asp-for="NombreUsuario" class="control-label"></label>
                         <input asp-for="NombreUsuario" class="form-control" />
                         <span asp-validation-for="NombreUsuario" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
                         <input asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
+                        <input asp-for="Password" type="password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label asp-for="Telefono" class="control-label"></label>
                         <input asp-for="Telefono" class="form-control" />
                         <span asp-validation-for="Telefono" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <label asp-for="ImagenPerfilFile" class="control-label"></label>
+                        <input asp-for="ImagenPerfilFile" type="file" class="form-control" onchange="previewImage(event)" />
+                        <span asp-validation-for="ImagenPerfilFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group preview">
+                        <!-- Aquí se mostrará la vista previa de la imagen -->
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
         </div>
-
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
     </div>
 
     @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script>
+            function previewImage(event) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var output = document.createElement('img');
+                    output.src = reader.result;
+                    output.classList.add('preview-image');
+                    var container = document.querySelector('.preview');
+                    container.innerHTML = '';
+                    container.appendChild(output);
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
     }
 </body>
 </html>

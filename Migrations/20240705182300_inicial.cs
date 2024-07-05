@@ -38,7 +38,8 @@ namespace PNTProyecto.Migrations
                     NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImagenPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
