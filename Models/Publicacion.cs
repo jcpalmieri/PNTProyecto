@@ -13,6 +13,8 @@ namespace PNTProyecto.Models
      public string Contacto { get; set; }
     public string? UsuarioInteresado { get; set; }
     public int UsuarioId { get; set; }
+        [NotMapped]
+        public IFormFile ImagenFile { get; set; }
 
         // Propiedad calculada que no se almacena en la base de datos
         [NotMapped]

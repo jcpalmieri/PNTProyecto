@@ -96,31 +96,96 @@ namespace PNTProyecto.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Publicacion publicacion)
         {
+            _logger.LogInformation("Inicio del método Create");
+
+            if (publicacion.ImagenFile != null && publicacion.ImagenFile.Length > 0)
+            {
+                var extension = Path.GetExtension(publicacion.ImagenFile.FileName).ToLower();
+                _logger.LogInformation("Extensión del archivo: {Extension}", extension);
+
+                if (extension != ".jpg" && extension != ".jpeg")
+                {
+                    ModelState.AddModelError("ImagenFile", "Solo se permiten archivos JPG.");
+                    var tiposMascotasInner = ObtenerTiposMascotas();
+                    ViewBag.TipoMascotas = new SelectList(tiposMascotasInner, "Value", "Text");
+                    _logger.LogWarning("Archivo no permitido: {Extension}", extension);
+                    return View(publicacion);
+                }
+
+                var fileName = Path.GetFileNameWithoutExtension(publicacion.ImagenFile.FileName);
+                var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+                var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", uniqueFileName);
+
+                try
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await publicacion.ImagenFile.CopyToAsync(stream);
+                    }
+                    // Aquí llenamos el campo Imagen con la ruta relativa
+                    publicacion.Imagen = $"/images/{uniqueFileName}";
+                    _logger.LogInformation("Imagen guardada en: {FilePath}", filePath);
+
+                    // Eliminamos cualquier error de ModelState relacionado con el campo Imagen
+                    ModelState.Remove("Imagen");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error al guardar la imagen");
+                    ModelState.AddModelError("ImagenFile", "Error al guardar la imagen.");
+                    var tiposMascotasInner = ObtenerTiposMascotas();
+                    ViewBag.TipoMascotas = new SelectList(tiposMascotasInner, "Value", "Text");
+                    return View(publicacion);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("ImagenFile", "Se requiere una imagen.");
+                _logger.LogWarning("Se requiere una imagen.");
+            }
+
             if (ModelState.IsValid)
             {
                 var userName = User.Identity.Name;
+                _logger.LogInformation("Nombre de usuario: {UserName}", userName);
+
                 var usuario = _context.Usuarios.FirstOrDefault(u => u.NombreUsuario == userName);
 
                 if (usuario != null)
                 {
                     publicacion.UsuarioId = usuario.UsuarioId;
+                    _logger.LogInformation("Usuario encontrado: {UsuarioId}", usuario.UsuarioId);
+
                     _context.Publicaciones.Add(publicacion);
                     await _context.SaveChangesAsync();
-
+                    _logger.LogInformation("Publicación guardada con éxito");
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
                     ModelState.AddModelError("", "Usuario no encontrado.");
+                    _logger.LogWarning("Usuario no encontrado");
                 }
             }
-            var tiposMascotas = ObtenerTiposMascotas(); // Obtener lista de tipos de mascotas
-            ViewBag.TipoMascotas = new SelectList(tiposMascotas, "Value", "Text");
+            else
+            {
+                _logger.LogWarning("ModelState no es válido");
+                foreach (var modelStateKey in ModelState.Keys)
+                {
+                    var modelStateVal = ModelState[modelStateKey];
+                    foreach (var error in modelStateVal.Errors)
+                    {
+                        _logger.LogWarning("Error en {Key}: {ErrorMessage}", modelStateKey, error.ErrorMessage);
+                    }
+                }
+            }
 
+            var tiposMascotas = ObtenerTiposMascotas();
+            ViewBag.TipoMascotas = new SelectList(tiposMascotas, "Value", "Text");
+            _logger.LogInformation("Fin del método Create");
             return View(publicacion);
-            //ViewBag.TipoMascotas = new SelectList(new List<string> { "Perro", "Gato", "Ave", "Otro" });
-            //return View(publicacion);
         }
+
         private List<SelectListItem> ObtenerTiposMascotas()
         {
             // Implementación para obtener tipos de mascotas desde algún servicio o repositorio
