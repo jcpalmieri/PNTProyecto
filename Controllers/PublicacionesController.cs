@@ -220,13 +220,13 @@ namespace PNTProyecto.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen")] Publicacion publicacion)
+        public async Task<IActionResult> Edit(int id, [Bind("nroPublicacion,NombreMascota,Descripcion,TipoMascota,Contacto,Imagen,ImagenFile")] Publicacion publicacion)
         {
             if (id != publicacion.nroPublicacion)
             {
                 return NotFound();
             }
-
+                      
             if (ModelState.IsValid)
             {
                 try
@@ -239,12 +239,31 @@ namespace PNTProyecto.Controllers
                         // Obtener la entidad existente desde la base de datos
                         var existingPublicacion = await _context.Publicaciones.FindAsync(id);
 
+                        if (existingPublicacion == null)
+                        {
+                            return NotFound();
+                        }
+
+                        if (publicacion.ImagenFile != null && publicacion.ImagenFile.Length > 0)
+                        {
+                            var extension = Path.GetExtension(publicacion.ImagenFile.FileName).ToLower();
+                            var fileName = Path.GetFileNameWithoutExtension(publicacion.ImagenFile.FileName);
+                            var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+                            var filePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", uniqueFileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await publicacion.ImagenFile.CopyToAsync(stream);
+                            }
+
+                            existingPublicacion.Imagen = $"/images/{uniqueFileName}";
+                        }
+
                         // Copiar los valores editables desde el formulario a la entidad existente
                         existingPublicacion.NombreMascota = publicacion.NombreMascota;
                         existingPublicacion.Descripcion = publicacion.Descripcion;
                         existingPublicacion.TipoMascota = publicacion.TipoMascota;
                         existingPublicacion.Contacto = publicacion.Contacto;
-                        existingPublicacion.Imagen = publicacion.Imagen;
 
                         // Guardar los cambios en la base de datos
                         _context.Update(existingPublicacion);
@@ -257,8 +276,9 @@ namespace PNTProyecto.Controllers
                         ModelState.AddModelError("", "Usuario no encontrado.");
                     }
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
+                    _logger.LogError(ex, "Error al actualizar la publicación con ID {PublicacionId}", publicacion.nroPublicacion);
                     if (!PublicacionExists(publicacion.nroPublicacion))
                     {
                         return NotFound();

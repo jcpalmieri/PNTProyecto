@@ -15,6 +15,7 @@ namespace PNTProyecto.Controllers
         {
             _context = context;
             _hostingEnvironment = hostingEnvironment;  // Agrega esta línea
+            ViewBag.PageTitle = "Editar información";
 
         }
 
@@ -132,8 +133,8 @@ namespace PNTProyecto.Controllers
                     _context.Update(existingUsuario);
                     await _context.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Cambios guardados con éxito.";
-                    return RedirectToAction("Login", "Account", new { area = "", returnUrl = "" });
+                    // TempData["SuccessMessage"] = "Cambios guardados con éxito.";
+                    return RedirectToAction("Index", "Perfil", new { id = usuario.UsuarioId });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -184,12 +185,12 @@ namespace PNTProyecto.Controllers
                 return NotFound();
             }
 
-            // esto seria un objeto respuesta.
             var responseObj = new
             {
                 usuario.UsuarioId,
                 usuario.Email,
-                usuario.Telefono
+                usuario.Telefono,
+                imagenPerfil = usuario.ImagenPerfil 
             };
 
             return Ok(responseObj);

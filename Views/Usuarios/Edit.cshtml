@@ -37,7 +37,11 @@
             color: #4CAF50;
             font-weight: bold;
         }
-
+       
+        p {
+            color: #4CAF50;
+            font-weight: bold;
+        }
         input[type="text"],
         input[type="email"],
         input[type="password"],
@@ -75,62 +79,93 @@
             display: block;
             margin: 0 auto 20px;
         }
+
+        .preview-image {
+            width: 150px; 
+            height: 150px; 
+            object-fit: cover; /* Para mantener las proporciones */
+        }
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Edit</h1>
-
         <h4>Usuario</h4>
         <hr />
-
         @using (Html.BeginForm("Edit", "Usuarios", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.UsuarioId)
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.UsuarioId)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NombreUsuario)
-            @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email)
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password)
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Telefono)
-            @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Imagen de Perfil Actual")
-            @if (!string.IsNullOrEmpty(Model.ImagenPerfil))
+            <div class="form-group">
+                @Html.Label("Imagen de Perfil Actual")
+                @if (!string.IsNullOrEmpty(Model.ImagenPerfil))
                 {
-            <img src="@Model.ImagenPerfil" alt="Imagen de Perfil" class="profile-image" />
+                    <img src="@Model.ImagenPerfil" alt="Imagen de Perfil" class="profile-image" />
                 }
-        </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImagenPerfilFile, "Cambiar Imagen de Perfil")
-            <input type="file" name="ImagenPerfilFile" class="form-control" accept=".jpg, .jpeg, .png" />
-            @Html.ValidationMessageFor(model => model.ImagenPerfilFile, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImagenPerfilFile, "Cambiar Imagen de Perfil")
+                <input type="file" name="ImagenPerfilFile" class="form-control" accept=".jpg, .jpeg, .png" onchange="previewImage(event)" />
+                @Html.ValidationMessageFor(model => model.ImagenPerfilFile, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group preview">
+            </div>
 
-        <div class="form-group">
-            <input type="submit" value="Guardar" class="btn btn-primary" />
-        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreUsuario)
+                @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Telefono)
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+
+           
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
         }
     </div>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+        <script>
+            function previewImage(event) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.createElement('img');
+                    output.src = reader.result;
+                    output.classList.add('preview-image');
+                    var container = document.querySelector('.preview');
+                    container.innerHTML = '';
+                    container.appendChild(output);
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+    }
+
 </body>
 </html>

@@ -18,12 +18,11 @@ namespace PNTProyecto.Models
         [Required]
         public string Password { get; set; }
 
-        [Required]
         public string Telefono { get; set; }
 
-        public string? ImagenPerfil { get; set; }  // Campo para la ruta de la imagen de perfil
+        public string? ImagenPerfil { get; set; }
 
         [NotMapped]
-        public IFormFile ImagenPerfilFile { get; set; }  // Campo para la subida de la imagen de perfil
+        public IFormFile? ImagenPerfilFile { get; set; }
     }
 }

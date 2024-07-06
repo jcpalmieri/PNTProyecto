@@ -6,7 +6,6 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<div>
     <h4>Publicación</h4>
     <hr />
     <div class="row">
@@ -19,24 +18,44 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 @Html.HiddenFor(model => model.nroPublicacion) 
-
                 <div class="form-group">
-                    @Html.LabelFor(model => model.NombreMascota, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.NombreMascota, "Nombre de mascota: ", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.NombreMascota, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.NombreMascota, "", new { @class = "text-danger" })
                     </div>
                 </div>
+          
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+
+                        <div class="form-group">
+                            @Html.Label("Imagen actual")
+                      
+                            @if (!string.IsNullOrEmpty(Model.Imagen))
+                            {
+                                <img src="@Model.Imagen" alt="Imagen de Perfil" class="profile-image" />                           
+                            }
+                        </div>
+                        <div class="hidden-div">
+                            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+                        
+                    <div class="col-md-10"> 
                         @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
-                        <small class="text-muted">Ingrese la URL de la imagen.</small>
+                      </div>
+                        </div>
+                  </div>
+                    <div class="form-group">
+                    <div>
+                        @Html.LabelFor(model => model.ImagenFile, "Cambiar imagen")
                     </div>
+                        <input type="file" name="ImagenFile" class="form-control" accept=".jpg, .jpeg, .png" onchange="previewImage(event)" />
+                        @Html.ValidationMessageFor(model => model.ImagenFile, "", new { @class = "text-danger" })
+                    </div>
+                <div class="form-group preview">
+                    <!-- Aquí se mostrará la vista previa de la imagen -->
                 </div>
-                
                 <div class="form-group">
                     @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -46,7 +65,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TipoMascota, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.TipoMascota, "Tipo de mascota", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("TipoMascota", new SelectList(ViewBag.TipoMascotas), "-- Seleccione --", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.TipoMascota, "", new { @class = "text-danger" })
@@ -62,9 +81,12 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                    </div>
+                      
+                        <!-- Botón para enviar el formulario -->
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <!-- Botón para cancelar -->
+                        <button type="button" class="btn btn-primary" onclick="cancelar()">Cancelar</button>
+
                 </div>
             </div>
             }
@@ -73,12 +95,35 @@
 </div>
 
 
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function cancelar() {
+            window.history.back();
+        }
+    </script>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.createElement('img');
+                output.src = reader.result;
+                output.classList.add('preview-image');
+                var container = document.querySelector('.preview');
+                container.innerHTML = '';
+                container.appendChild(output);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 }
 
-
 <style>
+     .hidden-div {
+        display: none;
+    }
+
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -145,5 +190,21 @@
             text-decoration: none;
             color: #45a049; /* Color del enlace al pasar el mouse */
         }
+
+    .profile-image {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 0 20px 0;
+    }
+
+    .preview-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover; /* Para mantener las proporciones */
+    }
+
+    
 </style>
 
