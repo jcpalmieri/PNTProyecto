@@ -33,7 +33,7 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" id="descripcion">
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
         <dt class="col-sm-2">
@@ -47,13 +47,13 @@
 <div>
     @if (Model.UsuarioId == currentUserId)
     {
-        <h4>Usuarios Interesados</h4>
-        <ul>
-            @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
+    <h4>Usuarios Interesados</h4>
+    <ul>
+        @foreach (var userId in Model.UsuarioInteresado?.Split(',') ?? new string[0])
             {
-                <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
+        <li><a asp-controller="Usuarios" asp-action="Details" asp-route-id="@userId">Usuario @userId</a></li>
             }
-        </ul>
+    </ul>
     }
 </div>
 <div>
@@ -78,8 +78,6 @@
     <button type="button" onclick="toggleMeGusta(@Model.nroPublicacion)" class="btn btn-info">Me Gusta</button>
     }
 </div>
-
-
 
 @section Scripts {
     <script>
@@ -111,11 +109,23 @@
                 alert('Hubo un error al realizar la acción.');
             }
         }
+
+        // !script para bajar un renglon cada 100 lineas!
+        function addLineBreaks(text, interval) {
+            const regex = new RegExp(`(.{1,${interval}})`, 'g');
+            return text.match(regex).join('\n');
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const descriptionElement = document.querySelector('#descripcion');
+            if (descriptionElement) {
+                const originalText = descriptionElement.innerText;
+                const formattedText = addLineBreaks(originalText, 100);
+                descriptionElement.innerText = formattedText;
+            }
+        });
     </script>
 }
-
-
-
 
 <style>
     body {
@@ -135,7 +145,7 @@
         color: #ccc; /* Color del subtítulo */
     }
 
-    h5{
+    h5 {
         color: #ccc; /* Color del subtítulo */
     }
 
