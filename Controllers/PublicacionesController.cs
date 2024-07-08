@@ -28,9 +28,6 @@ namespace PNTProyecto.Controllers
         {
             var publicaciones = await _context.Publicaciones
                                          .ToListAsync();
-
-            // Calculamos la cantidad de usuarios interesados para cada publicación y 
-            //luego listamos de acuerdo al orden de interesados
             var publicacionesConConteo = publicaciones.Select(p => new
             {
                 Publicacion = p,
@@ -51,7 +48,6 @@ namespace PNTProyecto.Controllers
                 return 0;
             }
 
-            // separamos ids por comas
             var ids = usuariosInteresados.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             return ids.Length;
         }
@@ -86,8 +82,7 @@ namespace PNTProyecto.Controllers
         // GET: Publicaciones/Create
         public IActionResult Create()
         {
-            //   ViewBag.TipoMascotas = new List<string> { "Perro", "Gato", "Ave", "Pez", "Roedor" };
-            var tiposMascotas = ObtenerTiposMascotas(); // Obtener lista de tipos de mascotas
+            var tiposMascotas = ObtenerTiposMascotas();
             ViewBag.TipoMascotas = new SelectList(tiposMascotas, "Value", "Text");
             return View();
         }
@@ -122,11 +117,9 @@ namespace PNTProyecto.Controllers
                     {
                         await publicacion.ImagenFile.CopyToAsync(stream);
                     }
-                    // Aquí llenamos el campo Imagen con la ruta relativa
                     publicacion.Imagen = $"/images/{uniqueFileName}";
                     _logger.LogInformation("Imagen guardada en: {FilePath}", filePath);
 
-                    // Eliminamos cualquier error de ModelState relacionado con el campo Imagen
                     ModelState.Remove("Imagen");
                 }
                 catch (Exception ex)
@@ -188,7 +181,6 @@ namespace PNTProyecto.Controllers
 
         private List<SelectListItem> ObtenerTiposMascotas()
         {
-            // Implementación para obtener tipos de mascotas desde algún servicio o repositorio
             return new List<SelectListItem>
         {
             new SelectListItem { Value = "Perro", Text = "Perro" },
@@ -258,14 +250,11 @@ namespace PNTProyecto.Controllers
 
                             existingPublicacion.Imagen = $"/images/{uniqueFileName}";
                         }
-
-                        // Copiar los valores editables desde el formulario a la entidad existente
                         existingPublicacion.NombreMascota = publicacion.NombreMascota;
                         existingPublicacion.Descripcion = publicacion.Descripcion;
                         existingPublicacion.TipoMascota = publicacion.TipoMascota;
                         existingPublicacion.Contacto = publicacion.Contacto;
 
-                        // Guardar los cambios en la base de datos
                         _context.Update(existingPublicacion);
                         await _context.SaveChangesAsync();
 
@@ -364,12 +353,10 @@ namespace PNTProyecto.Controllers
                 return Json(new { success = false, message = "Publicación no encontrada." });
             }
 
-            // Obtener lista de usuarios interesados
             var usuariosInteresados = string.IsNullOrEmpty(publicacion.UsuarioInteresado)
                 ? new List<string>()
                 : publicacion.UsuarioInteresado.Split(',').ToList();
 
-            // Verificar si el usuario ya está en la lista
             var userIdString = usuario.UsuarioId.ToString();
             var existeUsuario = usuariosInteresados.Contains(userIdString);
 
