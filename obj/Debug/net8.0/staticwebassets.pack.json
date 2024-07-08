@@ -1,308 +1,336 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PNTProyecto.bundle.scp.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PNTProyecto.bundle.scp.css",
       "PackagePath": "staticwebassets\\PNTProyecto.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\.gitignore",
+      "PackagePath": "staticwebassets\\.gitignore"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Ataulfo.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Ataulfo.jpg",
       "PackagePath": "staticwebassets\\images\\Ataulfo.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\BolaDeNieve.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\BolaDeNieve.jpg",
       "PackagePath": "staticwebassets\\images\\BolaDeNieve.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\BolaDeNieve_904c23c9-fb7d-48c9-bcce-82b1dcb76f59.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\BolaDeNieve_904c23c9-fb7d-48c9-bcce-82b1dcb76f59.jpg",
       "PackagePath": "staticwebassets\\images\\BolaDeNieve_904c23c9-fb7d-48c9-bcce-82b1dcb76f59.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Brutus.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Brutus.jpg",
       "PackagePath": "staticwebassets\\images\\Brutus.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Brutus_d5c317c2-0931-43df-8128-f0b4501f78bd.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Brutus_d5c317c2-0931-43df-8128-f0b4501f78bd.jpg",
       "PackagePath": "staticwebassets\\images\\Brutus_d5c317c2-0931-43df-8128-f0b4501f78bd.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Fito.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Fito.jpg",
       "PackagePath": "staticwebassets\\images\\Fito.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Fito_60055b99-0eb7-4437-ba25-34ea7bc21249.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Fito_60055b99-0eb7-4437-ba25-34ea7bc21249.jpg",
       "PackagePath": "staticwebassets\\images\\Fito_60055b99-0eb7-4437-ba25-34ea7bc21249.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Nemo.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Nemo.jpg",
       "PackagePath": "staticwebassets\\images\\Nemo.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\images\\Paquito.jpg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\Paquito.jpg",
       "PackagePath": "staticwebassets\\images\\Paquito.jpg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg",
+      "PackagePath": "staticwebassets\\images\\font_437181bb-62ec-414c-90f0-fce8e40486b1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_715b52d4-787e-40a1-b022-64d21c0f9b86.jpg",
+      "PackagePath": "staticwebassets\\images\\font_715b52d4-787e-40a1-b022-64d21c0f9b86.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_71ee0afe-6f61-4d57-8b25-6f80b175ce04.jpg",
+      "PackagePath": "staticwebassets\\images\\font_71ee0afe-6f61-4d57-8b25-6f80b175ce04.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_7241912f-664e-4c93-be72-57ef39ebf62f.jpg",
+      "PackagePath": "staticwebassets\\images\\font_7241912f-664e-4c93-be72-57ef39ebf62f.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\images\\font_83535280-a0e5-4df1-a73f-a065a7d2c212.jpg",
+      "PackagePath": "staticwebassets\\images\\font_83535280-a0e5-4df1-a73f-a065a7d2c212.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_77fbab63-14b0-45ce-8797-793a68b7b1c2.jpeg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_77fbab63-14b0-45ce-8797-793a68b7b1c2.jpeg",
       "PackagePath": "staticwebassets\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_77fbab63-14b0-45ce-8797-793a68b7b1c2.jpeg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_8438b262-84bb-42f3-9fc4-c34d72b28b44.jpeg",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_8438b262-84bb-42f3-9fc4-c34d72b28b44.jpeg",
       "PackagePath": "staticwebassets\\profile_images\\WhatsApp Image 2024-06-30 at 20.57.10_8438b262-84bb-42f3-9fc4-c34d72b28b44.jpeg"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_30723ee5-21a9-452f-b28e-976dfd610e40.png",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_30723ee5-21a9-452f-b28e-976dfd610e40.png",
       "PackagePath": "staticwebassets\\profile_images\\descarga_30723ee5-21a9-452f-b28e-976dfd610e40.png"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_37dbad32-1be3-410d-8740-ae84a0de2b89.png",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_37dbad32-1be3-410d-8740-ae84a0de2b89.png",
       "PackagePath": "staticwebassets\\profile_images\\descarga_37dbad32-1be3-410d-8740-ae84a0de2b89.png"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_46341404-a537-42a6-ad6c-37050312f0a1.png",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_46341404-a537-42a6-ad6c-37050312f0a1.png",
       "PackagePath": "staticwebassets\\profile_images\\descarga_46341404-a537-42a6-ad6c-37050312f0a1.png"
     },
     {
-      "Id": "C:\\Users\\User\\source\\Repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_afe6b8cb-82c5-424a-a259-be8ebcc6e4e2.png",
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\descarga_afe6b8cb-82c5-424a-a259-be8ebcc6e4e2.png",
       "PackagePath": "staticwebassets\\profile_images\\descarga_afe6b8cb-82c5-424a-a259-be8ebcc6e4e2.png"
+    },
+    {
+      "Id": "C:\\Users\\Agustin\\source\\repos\\PNTProyecto\\wwwroot\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg",
+      "PackagePath": "staticwebassets\\profile_images\\font_210f1472-87f7-42b6-b7ba-5985b08e45f1.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PNTProyecto.Microsoft.AspNetCore.StaticWebAssets.props",
